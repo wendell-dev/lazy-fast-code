@@ -13,4 +13,12 @@
     <artifactId>code-generator</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 </project>
