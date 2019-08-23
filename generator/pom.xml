@@ -13,11 +13,19 @@
     <artifactId>code-generator</artifactId>
     <packaging>jar</packaging>
 
+    <name>code-generator</name>
+    <description>lazyFastCode 代码生成器</description>
+
     <dependencies>
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
