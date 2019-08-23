@@ -27,23 +27,23 @@ public class ErrorMsg implements Serializable {
     }
 
     public static String fail() {
-        return ErrorMsg.of(MsgEnum.FAIL.getCode(), MsgEnum.FAIL.getMsg());
+        return ErrorMsg.of(MsgEnum.FAIL.code(), MsgEnum.FAIL.msg());
     }
 
     public static String fail(String msg) {
-        return ErrorMsg.of(MsgEnum.FAIL.getCode(), msg);
+        return ErrorMsg.of(MsgEnum.FAIL.code(), msg);
     }
 
     public static String fail(String msg, String detailMsg) {
-        return ErrorMsg.of(MsgEnum.FAIL.getCode(), msg, detailMsg);
+        return ErrorMsg.of(MsgEnum.FAIL.code(), msg, detailMsg);
     }
 
     public static String error() {
-        return ErrorMsg.of(MsgEnum.ERROR.getCode(), MsgEnum.ERROR.getMsg());
+        return ErrorMsg.of(MsgEnum.ERROR.code(), MsgEnum.ERROR.msg());
     }
 
     public static String of(MsgEnum msgEnum) {
-        return ErrorMsg.of(msgEnum.getCode(), msgEnum.getMsg(), null);
+        return ErrorMsg.of(msgEnum.code(), msgEnum.msg(), null);
     }
 
     public static String of(int code, String msg) {

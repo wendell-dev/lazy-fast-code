@@ -43,16 +43,12 @@ public class GlobalRestExceptionHandler {
     }
 
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Void> notFoundExceptionHandler(NotFoundException e) {
+    public ResponseEntity<Void> notFoundExceptionHandler() {
         return ResponseEntity.notFound().build();
     }
 
-
-
-
-
     @ExceptionHandler(value = NoContentNotException.class)
-    public ResponseEntity<Void> notFoundExceptionHandler() {
+    public ResponseEntity<Void> notContentNotExceptionHandler() {
         return ResponseEntity.noContent().build();
     }
 

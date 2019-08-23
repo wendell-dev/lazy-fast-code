@@ -1,14 +1,11 @@
 package lazy.fast.code.core.exception;
 
-import lombok.Getter;
-
 /**
- * 基础常用消息枚举类
+ * 常用消息枚举类
  *
  * @author wendell
  */
-@Getter
-public enum MsgEnum {
+public enum MsgEnum implements MsgEnumable {
 
     /**
      * 操作成功
@@ -39,12 +36,22 @@ public enum MsgEnum {
      */
     RPC_ERROR(503, "外部服务异常");
 
-    private int code;
-    private String msg;
+    private final int code;
+    private final String msg;
 
     MsgEnum(int code, String msg) {
         this.code = code;
         this.msg = msg;
+    }
+
+    @Override
+    public int code() {
+        return code;
+    }
+
+    @Override
+    public String msg() {
+        return msg;
     }
 
 }

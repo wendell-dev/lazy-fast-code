@@ -21,21 +21,19 @@ public class NotFoundException extends RuntimeException {
      *            异常简要信息
      */
     public NotFoundException(String message) {
-        super(ErrorMsg.of(MsgEnum.NOT_FOUND.getCode(), message));
+        super(ErrorMsg.of(MsgEnum.NOT_FOUND.code(), message));
     }
 
     /**
-     * HTTP状态码为404的业务异常类，自定义返回的code和msg
+     * HTTP状态码为404的业务异常类，如果需要自定义返回的code和msg，那必须通过实现MsgEnumable的枚举来定义操作
      *
-     * {"code":code,"msg":msg}
+     * {"code":${msgEnum.code},"msg":"${msgEnum.msg}"}
      *
-     * @param code
-     *            异常code
-     * @param msg
-     *            异常简要信息
+     * @param msgEnum
+     *            消息枚举
      */
-    public NotFoundException(int code, String msg) {
-        super(ErrorMsg.of(code, msg));
+    public NotFoundException(MsgEnumable msgEnum) {
+        super(ErrorMsg.of(msgEnum.code(), msgEnum.msg()));
     }
 
 }
