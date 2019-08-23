@@ -33,7 +33,7 @@ public class NotFoundException extends RuntimeException {
      *            消息枚举
      */
     public NotFoundException(MsgEnumable msgEnum) {
-        super(ErrorMsg.of(msgEnum.code(), msgEnum.msg()));
+        super(ErrorMsg.of(msgEnum));
     }
 
 }

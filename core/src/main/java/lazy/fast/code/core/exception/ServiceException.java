@@ -45,7 +45,7 @@ public class ServiceException extends RuntimeException {
      *            消息枚举
      */
     public ServiceException(MsgEnumable msgEnum) {
-        super(ErrorMsg.of(msgEnum.code(), msgEnum.msg()));
+        super(ErrorMsg.of(msgEnum));
     }
 
 }

@@ -1,6 +1,8 @@
 package lazy.fast.code.core.exception;
 
 import com.alibaba.fastjson.JSON;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -9,6 +11,8 @@ import java.io.Serializable;
  *
  * @author wendell
  */
+@Setter
+@Getter
 public class ErrorMsg implements Serializable {
 
     /** 异常code */
@@ -27,7 +31,7 @@ public class ErrorMsg implements Serializable {
     }
 
     public static String fail() {
-        return ErrorMsg.of(MsgEnum.FAIL.code(), MsgEnum.FAIL.msg());
+        return ErrorMsg.of(MsgEnum.FAIL);
     }
 
     public static String fail(String msg) {
@@ -39,18 +43,18 @@ public class ErrorMsg implements Serializable {
     }
 
     public static String error() {
-        return ErrorMsg.of(MsgEnum.ERROR.code(), MsgEnum.ERROR.msg());
+        return ErrorMsg.of(MsgEnum.ERROR);
     }
 
-    public static String of(MsgEnum msgEnum) {
-        return ErrorMsg.of(msgEnum.code(), msgEnum.msg(), null);
+    public static String of(MsgEnumable msgEnum) {
+        return ErrorMsg.of(msgEnum.code(), msgEnum.msg());
     }
 
     public static String of(int code, String msg) {
         return ErrorMsg.of(code, msg, null);
     }
 
-    public static String of(int code, String msg, String detailMsg) {
+    private static String of(int code, String msg, String detailMsg) {
         return new ErrorMsg(code, msg, detailMsg).toString();
     }
 
@@ -61,5 +65,4 @@ public class ErrorMsg implements Serializable {
     public String toString() {
         return JSON.toJSONString(this);
     }
-
 }
