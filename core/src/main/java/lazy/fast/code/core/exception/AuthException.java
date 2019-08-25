@@ -1,5 +1,9 @@
 package lazy.fast.code.core.exception;
 
+import lazy.fast.code.core.result.MsgEnum;
+import lazy.fast.code.core.result.MsgEnumable;
+import lazy.fast.code.core.result.ResultMsg;
+
 /**
  * 自定义未经过身份认证异常 - HTTP Status 401
  *
@@ -11,7 +15,7 @@ public class AuthException extends RuntimeException {
      * {"code":401,"msg":"未经过身份认证"}
      */
     public AuthException() {
-        super(ErrorMsg.of(MsgEnum.AUTH_ERROR));
+        super(ResultMsg.of(MsgEnum.AUTH_ERROR));
     }
 
     /**
@@ -21,7 +25,7 @@ public class AuthException extends RuntimeException {
      *            异常简要信息
      */
     public AuthException(String message) {
-        super(ErrorMsg.of(MsgEnum.AUTH_ERROR.code(), message));
+        super(ResultMsg.of(MsgEnum.AUTH_ERROR.code(), message));
     }
 
     /**
@@ -33,7 +37,7 @@ public class AuthException extends RuntimeException {
      *            消息枚举
      */
     public AuthException(MsgEnumable msgEnum) {
-        super(ErrorMsg.of(msgEnum));
+        super(ResultMsg.of(msgEnum));
     }
 
 }

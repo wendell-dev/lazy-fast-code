@@ -1,9 +1,9 @@
 package lazy.fast.code.core;
 
+import lazy.fast.code.core.result.ResultMsg;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,11 +20,22 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @GetMapping("/")
+    /**
+     * 等同于：
+     * <pre>
+     * @GetMapping("/ok")
+     * public String ok() {
+     *     return MsgInfo.ok();
+     * }
+     * </pre>
+     */
+    @GetMapping("/ok")
+    public ResponseEntity<String> ok() {
+        return ResponseEntity.ok(ResultMsg.ok());
+    }
+
+    @GetMapping("/no-content")
     public ResponseEntity hello() {
-        String s = null;
-        //throw new ServiceException("wwww");
-        Assert.notNull(s, "参数不能为null");
         return ResponseEntity.noContent().build();
     }
 

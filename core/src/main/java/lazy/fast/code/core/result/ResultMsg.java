@@ -1,4 +1,4 @@
-package lazy.fast.code.core.exception;
+package lazy.fast.code.core.result;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Getter;
@@ -7,55 +7,65 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * 异常消息返回
+ * 提示性消息返回
  *
  * @author wendell
  */
 @Setter
 @Getter
-public class ErrorMsg implements Serializable {
+public class ResultMsg implements Serializable {
 
-    /** 异常code */
+    /**
+     * code
+     */
     private int code;
 
-    /** 异常简要信息 */
+    /**
+     * 简要信息
+     */
     private String msg;
 
-    /** 异常详细信息 */
+    /**
+     * 详细信息
+     */
     private String detailMsg;
 
-    private ErrorMsg(int code, String msg, String detailMsg) {
+    private ResultMsg(int code, String msg, String detailMsg) {
         this.code = code;
         this.msg = msg;
         this.detailMsg = detailMsg;
     }
 
+    public static String ok() {
+        return ResultMsg.of(MsgEnum.SUCCESS);
+    }
+
     public static String fail() {
-        return ErrorMsg.of(MsgEnum.FAIL);
+        return ResultMsg.of(MsgEnum.FAIL);
     }
 
     public static String fail(String msg) {
-        return ErrorMsg.of(MsgEnum.FAIL.code(), msg);
+        return ResultMsg.of(MsgEnum.FAIL.code(), msg);
     }
 
     public static String fail(String msg, String detailMsg) {
-        return ErrorMsg.of(MsgEnum.FAIL.code(), msg, detailMsg);
+        return ResultMsg.of(MsgEnum.FAIL.code(), msg, detailMsg);
     }
 
     public static String error() {
-        return ErrorMsg.of(MsgEnum.ERROR);
+        return ResultMsg.of(MsgEnum.ERROR);
     }
 
     public static String of(MsgEnumable msgEnum) {
-        return ErrorMsg.of(msgEnum.code(), msgEnum.msg());
+        return ResultMsg.of(msgEnum.code(), msgEnum.msg());
     }
 
     public static String of(int code, String msg) {
-        return ErrorMsg.of(code, msg, null);
+        return ResultMsg.of(code, msg, null);
     }
 
     private static String of(int code, String msg, String detailMsg) {
-        return new ErrorMsg(code, msg, detailMsg).toString();
+        return new ResultMsg(code, msg, detailMsg).toString();
     }
 
     /**
@@ -65,4 +75,5 @@ public class ErrorMsg implements Serializable {
     public String toString() {
         return JSON.toJSONString(this);
     }
+
 }

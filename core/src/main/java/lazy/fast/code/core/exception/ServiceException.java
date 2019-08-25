@@ -1,5 +1,8 @@
 package lazy.fast.code.core.exception;
 
+import lazy.fast.code.core.result.MsgEnumable;
+import lazy.fast.code.core.result.ResultMsg;
+
 /**
  * 自定义service业务异常类 - HTTP Status 400
  *
@@ -11,7 +14,7 @@ public class ServiceException extends RuntimeException {
      * {"code":400,"msg":"操作失败"}
      */
     public ServiceException() {
-        super(ErrorMsg.fail());
+        super(ResultMsg.fail());
     }
 
     /**
@@ -21,7 +24,7 @@ public class ServiceException extends RuntimeException {
      *            异常简要信息
      */
     public ServiceException(String message) {
-        super(ErrorMsg.fail(message));
+        super(ResultMsg.fail(message));
     }
 
     /**
@@ -33,7 +36,7 @@ public class ServiceException extends RuntimeException {
      *            异常详细信息
      */
     public ServiceException(String message, String detailMsg) {
-        super(ErrorMsg.fail(message, detailMsg));
+        super(ResultMsg.fail(message, detailMsg));
     }
 
     /**
@@ -45,7 +48,7 @@ public class ServiceException extends RuntimeException {
      *            消息枚举
      */
     public ServiceException(MsgEnumable msgEnum) {
-        super(ErrorMsg.of(msgEnum));
+        super(ResultMsg.of(msgEnum));
     }
 
 }

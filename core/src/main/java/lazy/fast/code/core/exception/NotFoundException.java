@@ -1,5 +1,9 @@
 package lazy.fast.code.core.exception;
 
+import lazy.fast.code.core.result.MsgEnum;
+import lazy.fast.code.core.result.MsgEnumable;
+import lazy.fast.code.core.result.ResultMsg;
+
 /**
  * 自定义资源不存在异常类 - HTTP Status 404
  * 
@@ -11,7 +15,7 @@ public class NotFoundException extends RuntimeException {
      * {"code":404,"msg":"资源不存在"}
      */
     public NotFoundException() {
-        super(ErrorMsg.of(MsgEnum.NOT_FOUND));
+        super(ResultMsg.of(MsgEnum.NOT_FOUND));
     }
 
     /**
@@ -21,7 +25,7 @@ public class NotFoundException extends RuntimeException {
      *            异常简要信息
      */
     public NotFoundException(String message) {
-        super(ErrorMsg.of(MsgEnum.NOT_FOUND.code(), message));
+        super(ResultMsg.of(MsgEnum.NOT_FOUND.code(), message));
     }
 
     /**
@@ -33,7 +37,7 @@ public class NotFoundException extends RuntimeException {
      *            消息枚举
      */
     public NotFoundException(MsgEnumable msgEnum) {
-        super(ErrorMsg.of(msgEnum));
+        super(ResultMsg.of(msgEnum));
     }
 
 }

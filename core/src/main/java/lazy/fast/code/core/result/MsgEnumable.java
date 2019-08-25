@@ -1,4 +1,4 @@
-package lazy.fast.code.core.exception;
+package lazy.fast.code.core.result;
 
 /**
  * 消息枚举顶层接口, 自定义消息枚举类应该实现此接口

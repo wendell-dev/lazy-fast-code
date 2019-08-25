@@ -1,4 +1,4 @@
-package lazy.fast.code.core.exception;
+package lazy.fast.code.core.result;
 
 /**
  * 常用消息枚举类
@@ -32,7 +32,11 @@ public enum MsgEnum implements MsgEnumable {
      */
     NOT_FOUND(404, "资源不存在"),
     /**
-     * RPC或与其他项目通信调用异常，外部服务异常
+     * REST调用异常，外部服务异常
+     */
+    REST_ERROR(503, "外部服务异常"),
+    /**
+     * RPC调用异常，外部服务异常
      */
     RPC_ERROR(503, "外部服务异常");
 

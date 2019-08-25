@@ -1,5 +1,7 @@
 package lazy.fast.code.core.exception;
 
+import lazy.fast.code.core.result.MsgEnum;
+import lazy.fast.code.core.result.ResultMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
@@ -58,35 +60,35 @@ public class GlobalRestExceptionHandler {
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException e) {
-        return ResponseEntity.badRequest().body(ErrorMsg.fail(e.getMessage()));
+        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getMessage()));
     }
 
     @ExceptionHandler(value = IllegalStateException.class)
     public ResponseEntity<String> illegalStateExceptionHandler(IllegalStateException e) {
-        return ResponseEntity.badRequest().body(ErrorMsg.fail(e.getMessage()));
+        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getMessage()));
     }
 
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public ResponseEntity<String>
         missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException e) {
-        return ResponseEntity.badRequest().body(ErrorMsg.fail(e.getParameterName() + "参数缺失"));
+        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getParameterName() + "参数缺失"));
     }
 
     @ExceptionHandler(value = TypeMismatchException.class)
     public ResponseEntity<String> typeMismatchExceptionHandler(TypeMismatchException e) {
         return ResponseEntity.badRequest()
-            .body(ErrorMsg.fail("参数类型不匹配,参数" + e.getPropertyName() + "类型应该为" + e.getRequiredType()));
+            .body(ResultMsg.fail("参数类型不匹配,参数" + e.getPropertyName() + "类型应该为" + e.getRequiredType()));
     }
 
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<String> methodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
-        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(ErrorMsg.fail(e.getMethod() + "请求方法不支持"));
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(ResultMsg.fail(e.getMethod() + "请求方法不支持"));
     }
 
     @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
     public ResponseEntity<String> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException e) {
         return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-            .body(ErrorMsg.fail(e.getContentType() + "媒体类型不支持"));
+            .body(ResultMsg.fail(e.getContentType() + "媒体类型不支持"));
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -94,31 +96,31 @@ public class GlobalRestExceptionHandler {
         BindingResult bindingResult = e.getBindingResult();
         List<ObjectError> allErrors = bindingResult.getAllErrors();
         StringBuilder sb = new StringBuilder(10);
-        allErrors.stream().forEach(oe -> sb.append(oe.getDefaultMessage()).append(";"));
+        allErrors.forEach(oe -> sb.append(oe.getDefaultMessage()).append(";"));
         String body = sb.toString();
         if (body.endsWith(";")) {
             body = body.substring(0, body.length() - 1);
         }
-        return ResponseEntity.badRequest().body(ErrorMsg.fail(body));
+        return ResponseEntity.badRequest().body(ResultMsg.fail(body));
     }
 
     @ExceptionHandler(BindException.class)
     public ResponseEntity<String> handleBindException(BindException ex) {
         FieldError fieldError = ex.getBindingResult().getFieldError();
         assert fieldError != null;
-        return ResponseEntity.badRequest().body(ErrorMsg.fail(fieldError.getDefaultMessage()));
+        return ResponseEntity.badRequest().body(ResultMsg.fail(fieldError.getDefaultMessage()));
     }
 
     @ExceptionHandler(value = RestClientException.class)
     public ResponseEntity<String> restClientExceptionHandler(RestClientException e) {
         log.error(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(ErrorMsg.of(MsgEnum.RPC_ERROR));
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(ResultMsg.of(MsgEnum.REST_ERROR));
     }
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<String> exceptionHandler(Exception e) {
         log.error(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ErrorMsg.error());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
     }
 
 }
