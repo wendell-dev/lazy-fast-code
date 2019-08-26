@@ -7,7 +7,12 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * 提示性消息返回
+ * 偏操作提示类的消息返回 - 只针对返回JSON数据交互格式
+ * 
+ * <pre>
+ * 适用于操作提示类，如：操作成功/操作失败 前端可直接提示msg给用户.
+ * 还有类似返回一个字段值的情况，如：返回一个url地址，返回一个操作id值等，前端可直接使用msg.
+ * </pre>
  *
  * @author wendell
  */
@@ -54,6 +59,14 @@ public class ResultMsg implements Serializable {
 
     public static String error() {
         return ResultMsg.of(MsgEnum.ERROR);
+    }
+
+    public static String error(String msg) {
+        return ResultMsg.of(MsgEnum.ERROR.code(), msg);
+    }
+
+    public static String error(String msg, String detailMsg) {
+        return ResultMsg.of(MsgEnum.ERROR.code(), msg, detailMsg);
     }
 
     public static String of(MsgEnumable msgEnum) {

@@ -15,19 +15,25 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
 /**
- * 全局异常处理器 - 只针对返回JSON数据交互格式
+ * 全局异常处理器 - 只针对返回JSON数据交互格式(标记为@RestController类)
  *
  * @author wendell
  */
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(annotations = {RestController.class})
 public class GlobalRestExceptionHandler {
+
+    @ExceptionHandler(value = NoContentNotException.class)
+    public ResponseEntity<Void> notContentNotExceptionHandler() {
+        return ResponseEntity.noContent().build();
+    }
 
     @ExceptionHandler(value = ServiceException.class)
     public ResponseEntity<String> serviceExceptionHandler(ServiceException e) {
@@ -49,14 +55,10 @@ public class GlobalRestExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
-    @ExceptionHandler(value = NoContentNotException.class)
-    public ResponseEntity<Void> notContentNotExceptionHandler() {
-        return ResponseEntity.noContent().build();
+    @ExceptionHandler(value = SystemException.class)
+    public ResponseEntity<String> systemExceptionHandler(SystemException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
-
-
-
-
 
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException e) {
