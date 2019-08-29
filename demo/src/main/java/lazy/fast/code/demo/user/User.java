@@ -12,7 +12,6 @@ import javax.persistence.Table;
  * 用户信息 - entity
  *
  * @author wendell
- * @date 2019-08-28 11:44
  */
 @Entity
 @Table(name = "sys_user")

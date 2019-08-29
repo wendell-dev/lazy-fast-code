@@ -16,7 +16,6 @@ import java.util.List;
  * 用户信息 - controller
  *
  * @author wendell
- * @date 2019-08-28 12:00
  */
 @Api(tags = "用户")
 @RestController
