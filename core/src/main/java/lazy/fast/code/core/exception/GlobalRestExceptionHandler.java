@@ -57,6 +57,7 @@ public class GlobalRestExceptionHandler {
 
     @ExceptionHandler(value = SystemException.class)
     public ResponseEntity<String> systemExceptionHandler(SystemException e) {
+        log.error(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 
