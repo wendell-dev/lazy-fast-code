@@ -15,7 +15,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.RestClientException;
 
@@ -27,7 +26,7 @@ import java.util.List;
  * @author wendell
  */
 @Slf4j
-@RestControllerAdvice(annotations = {RestController.class})
+@RestControllerAdvice
 public class GlobalRestExceptionHandler {
 
     @ExceptionHandler(value = NoContentNotException.class)
@@ -58,7 +57,7 @@ public class GlobalRestExceptionHandler {
     @ExceptionHandler(value = SystemException.class)
     public ResponseEntity<String> systemExceptionHandler(SystemException e) {
         log.error(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
     }
 
     @ExceptionHandler(value = IllegalArgumentException.class)
