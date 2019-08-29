@@ -1,19 +1,18 @@
-package lazy.fast.code.core;
+package lazy.fast.code.demo;
 
-import lazy.fast.code.core.result.ResultMsg;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import lazy.fast.code.core.result.ResultMsg;
 
 /**
  * test
  *
  * @author wendell
  */
-@SpringBootApplication
-@RestController
+@SpringBootApplication(scanBasePackages = "lazy.fast.code")
 public class Application {
 
     public static void main(String[] args) {
@@ -22,8 +21,9 @@ public class Application {
 
     /**
      * 等同于：
+     * 
      * <pre>
-     * @GetMapping("/ok")
+     * &#64;GetMapping("/ok")
      * public String ok() {
      *     return MsgInfo.ok();
      * }

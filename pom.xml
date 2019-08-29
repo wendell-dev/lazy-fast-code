@@ -41,6 +41,7 @@
     <modules>
         <module>core</module>
         <module>generator</module>
+        <module>demo</module>
     </modules>
 
     <dependencyManagement>
