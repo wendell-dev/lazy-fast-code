@@ -19,7 +19,7 @@ lazyFastCode 可用于快速构建 Spring Boot 2.x 应用工程骨架，自动�
     |   |   pom.xml
     |   |
     |   |
-    | - generator/ - - - - lazyFastCode代码生成器，与Mybatis的生成器无关，基于FreeMarker重新开发，简单易懂、可定制化高
+    | - generator/ - - - - lazyFastCode代码生成器，与Mybatis的生成器无关，基于FreeMarker定制开发，简单易懂、可定制化高
     |   |   src/
     |   |   |   main
     |   |   |       java
