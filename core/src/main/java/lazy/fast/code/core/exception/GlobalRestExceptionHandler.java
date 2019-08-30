@@ -50,8 +50,8 @@ public class GlobalRestExceptionHandler {
     }
 
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Void> notFoundExceptionHandler() {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<String> notFoundExceptionHandler(NotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
     @ExceptionHandler(value = SystemException.class)

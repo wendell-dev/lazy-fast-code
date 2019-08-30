@@ -16,6 +16,11 @@ import java.util.List;
 @Mapper
 public interface UserRepository extends BaseRepository<User> {
 
+    /**
+     * 查询用户信息列表
+     * 
+     * @return 用户信息列表
+     */
     @Select("select * from sys_user")
     List<User> listUsers();
 

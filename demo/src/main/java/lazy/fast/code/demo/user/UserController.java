@@ -31,38 +31,43 @@ public class UserController extends BaseController<User> {
 
     @GetMapping
     public List<User> listUsers() {
+        return super.getService().list(null);
+    }
+
+    @GetMapping("/self")
+    public List<User> listUsersBySelf() {
         return this.userService.listUsers();
     }
 
-    @GetMapping("/all")
-    public List<User> selectAll() {
-        return this.userService.selectAll();
+    @GetMapping("/address")
+    public List<UserAddressDTO> listUserAddress() {
+        return this.userService.listUserAddress();
     }
 
     @PostMapping
     public User save() {
         User user = User.of();
-        user.setId(3L);
+        user.setId(1L);
         user.setName("张三");
-        this.getService().save(user);
+        super.getService().save(user);
         return user;
     }
 
     @PutMapping
     public User update() {
         User user = User.of();
-        user.setId(3L);
+        user.setId(1L);
         user.setName("张三1");
-        this.getService().update(user);
+        super.getService().update(user);
         return user;
     }
 
     @DeleteMapping
     public void delete() {
         User user = User.of();
-        user.setId(3L);
+        user.setId(1L);
         user.setName("张三");
-        this.getService().remove(user);
+        super.getService().remove(user);
     }
 
 }
