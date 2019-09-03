@@ -1,6 +1,7 @@
 package lazy.fast.code.core.result;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultMsg implements Serializable {
 
     /**
@@ -41,44 +43,48 @@ public class ResultMsg implements Serializable {
         this.detailMsg = detailMsg;
     }
 
-    public static String ok() {
+    public static ResultMsg ok() {
         return ResultMsg.of(MsgEnum.SUCCESS);
     }
 
-    public static String fail() {
+    public static ResultMsg ok(Serializable msg) {
+        return ResultMsg.of(MsgEnum.SUCCESS.code(), msg.toString());
+    }
+
+    public static ResultMsg fail() {
         return ResultMsg.of(MsgEnum.FAIL);
     }
 
-    public static String fail(String msg) {
+    public static ResultMsg fail(String msg) {
         return ResultMsg.of(MsgEnum.FAIL.code(), msg);
     }
 
-    public static String fail(String msg, String detailMsg) {
+    public static ResultMsg fail(String msg, String detailMsg) {
         return ResultMsg.of(MsgEnum.FAIL.code(), msg, detailMsg);
     }
 
-    public static String error() {
+    public static ResultMsg error() {
         return ResultMsg.of(MsgEnum.ERROR);
     }
 
-    public static String error(String msg) {
+    public static ResultMsg error(String msg) {
         return ResultMsg.of(MsgEnum.ERROR.code(), msg);
     }
 
-    public static String error(String msg, String detailMsg) {
+    public static ResultMsg error(String msg, String detailMsg) {
         return ResultMsg.of(MsgEnum.ERROR.code(), msg, detailMsg);
     }
 
-    public static String of(MsgEnumable msgEnum) {
+    public static ResultMsg of(MsgEnumable msgEnum) {
         return ResultMsg.of(msgEnum.code(), msgEnum.msg());
     }
 
-    public static String of(int code, String msg) {
+    public static ResultMsg of(int code, String msg) {
         return ResultMsg.of(code, msg, null);
     }
 
-    private static String of(int code, String msg, String detailMsg) {
-        return new ResultMsg(code, msg, detailMsg).toString();
+    private static ResultMsg of(int code, String msg, String detailMsg) {
+        return new ResultMsg(code, msg, detailMsg);
     }
 
     /**

@@ -34,67 +34,34 @@ public class GlobalRestExceptionHandler {
         return ResponseEntity.noContent().build();
     }
 
-    @ExceptionHandler(value = ServiceException.class)
-    public ResponseEntity<String> serviceExceptionHandler(ServiceException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
+    @ExceptionHandler(value = BusinessException.class)
+    public ResponseEntity<ResultMsg> businessExceptionHandler(BusinessException e) {
+        return ResponseEntity.badRequest().body(e.getResultMsg());
     }
 
     @ExceptionHandler(value = AuthException.class)
-    public ResponseEntity<String> authExceptionHandler(AuthException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+    public ResponseEntity<ResultMsg> authExceptionHandler(AuthException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getResultMsg());
     }
 
     @ExceptionHandler(value = ForbiddenException.class)
-    public ResponseEntity<String> forbiddenExceptionHandler(ForbiddenException e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+    public ResponseEntity<ResultMsg> forbiddenExceptionHandler(ForbiddenException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getResultMsg());
     }
 
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<String> notFoundExceptionHandler(NotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    public ResponseEntity<ResultMsg> notFoundExceptionHandler(NotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getResultMsg());
     }
 
     @ExceptionHandler(value = SystemException.class)
-    public ResponseEntity<String> systemExceptionHandler(SystemException e) {
+    public ResponseEntity<ResultMsg> systemExceptionHandler(SystemException e) {
         log.error(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
     }
 
-    @ExceptionHandler(value = IllegalArgumentException.class)
-    public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException e) {
-        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getMessage()));
-    }
-
-    @ExceptionHandler(value = IllegalStateException.class)
-    public ResponseEntity<String> illegalStateExceptionHandler(IllegalStateException e) {
-        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getMessage()));
-    }
-
-    @ExceptionHandler(value = MissingServletRequestParameterException.class)
-    public ResponseEntity<String>
-        missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException e) {
-        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getParameterName() + "参数缺失"));
-    }
-
-    @ExceptionHandler(value = TypeMismatchException.class)
-    public ResponseEntity<String> typeMismatchExceptionHandler(TypeMismatchException e) {
-        return ResponseEntity.badRequest()
-            .body(ResultMsg.fail("参数类型不匹配,参数" + e.getPropertyName() + "类型应该为" + e.getRequiredType()));
-    }
-
-    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<String> methodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
-        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(ResultMsg.fail(e.getMethod() + "请求方法不支持"));
-    }
-
-    @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity<String> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException e) {
-        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-            .body(ResultMsg.fail(e.getContentType() + "媒体类型不支持"));
-    }
-
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<String> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+    public ResponseEntity<ResultMsg> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         List<ObjectError> allErrors = bindingResult.getAllErrors();
         StringBuilder sb = new StringBuilder(10);
@@ -107,20 +74,53 @@ public class GlobalRestExceptionHandler {
     }
 
     @ExceptionHandler(BindException.class)
-    public ResponseEntity<String> handleBindException(BindException ex) {
+    public ResponseEntity<ResultMsg> handleBindException(BindException ex) {
         FieldError fieldError = ex.getBindingResult().getFieldError();
         assert fieldError != null;
         return ResponseEntity.badRequest().body(ResultMsg.fail(fieldError.getDefaultMessage()));
     }
 
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<ResultMsg> illegalArgumentExceptionHandler(IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getMessage()));
+    }
+
+    @ExceptionHandler(value = IllegalStateException.class)
+    public ResponseEntity<ResultMsg> illegalStateExceptionHandler(IllegalStateException e) {
+        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getMessage()));
+    }
+
+    @ExceptionHandler(value = MissingServletRequestParameterException.class)
+    public ResponseEntity<ResultMsg>
+        missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException e) {
+        return ResponseEntity.badRequest().body(ResultMsg.fail(e.getParameterName() + "参数缺失"));
+    }
+
+    @ExceptionHandler(value = TypeMismatchException.class)
+    public ResponseEntity<ResultMsg> typeMismatchExceptionHandler(TypeMismatchException e) {
+        return ResponseEntity.badRequest()
+            .body(ResultMsg.fail("参数类型不匹配,参数" + e.getPropertyName() + "类型应该为" + e.getRequiredType()));
+    }
+
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ResultMsg> methodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(ResultMsg.fail(e.getMethod() + "请求方法不支持"));
+    }
+
+    @ExceptionHandler(value = HttpMediaTypeNotSupportedException.class)
+    public ResponseEntity<ResultMsg> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException e) {
+        return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
+            .body(ResultMsg.fail(e.getContentType() + "媒体类型不支持"));
+    }
+
     @ExceptionHandler(value = RestClientException.class)
-    public ResponseEntity<String> restClientExceptionHandler(RestClientException e) {
+    public ResponseEntity<ResultMsg> restClientExceptionHandler(RestClientException e) {
         log.error(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(ResultMsg.of(MsgEnum.REST_ERROR));
     }
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<String> exceptionHandler(Exception e) {
+    public ResponseEntity<ResultMsg> exceptionHandler(Exception e) {
         log.error(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
     }

@@ -4,16 +4,16 @@ import lazy.fast.code.core.result.MsgEnumable;
 import lazy.fast.code.core.result.ResultMsg;
 
 /**
- * 自定义service业务异常类 - HTTP Status 400
+ * 自定义业务异常类 - HTTP Status 400
  *
  * @author wendell
  */
-public class ServiceException extends RuntimeException {
+public class BusinessException extends BaseUnCheckException {
 
     /**
      * {"code":400,"msg":"操作失败"}
      */
-    public ServiceException() {
+    public BusinessException() {
         super(ResultMsg.fail());
     }
 
@@ -23,7 +23,7 @@ public class ServiceException extends RuntimeException {
      * @param message
      *            异常简要信息
      */
-    public ServiceException(String message) {
+    public BusinessException(String message) {
         super(ResultMsg.fail(message));
     }
 
@@ -35,7 +35,7 @@ public class ServiceException extends RuntimeException {
      * @param detailMsg
      *            异常详细信息
      */
-    public ServiceException(String message, String detailMsg) {
+    public BusinessException(String message, String detailMsg) {
         super(ResultMsg.fail(message, detailMsg));
     }
 
@@ -47,7 +47,7 @@ public class ServiceException extends RuntimeException {
      * @param msgEnum
      *            消息枚举
      */
-    public ServiceException(MsgEnumable msgEnum) {
+    public BusinessException(MsgEnumable msgEnum) {
         super(ResultMsg.of(msgEnum));
     }
 

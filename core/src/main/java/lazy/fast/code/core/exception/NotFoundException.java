@@ -9,7 +9,7 @@ import lazy.fast.code.core.result.ResultMsg;
  * 
  * @author wendell
  */
-public class NotFoundException extends RuntimeException {
+public class NotFoundException extends BaseUnCheckException {
 
     /**
      * {"code":404,"msg":"资源不存在"}

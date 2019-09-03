@@ -9,7 +9,7 @@ import lazy.fast.code.core.result.ResultMsg;
  *
  * @author wendell
  */
-public class AuthException extends RuntimeException {
+public class AuthException extends BaseUnCheckException {
 
     /**
      * {"code":401,"msg":"未经过身份认证"}

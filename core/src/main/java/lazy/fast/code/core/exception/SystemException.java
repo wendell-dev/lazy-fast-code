@@ -8,7 +8,7 @@ import lazy.fast.code.core.result.ResultMsg;
  *
  * @author wendell
  */
-public class SystemException extends RuntimeException {
+public class SystemException extends BaseUnCheckException {
 
     /**
      * {"code":500,"msg":"服务器异常,请稍后再试"}

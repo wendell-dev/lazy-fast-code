@@ -9,7 +9,7 @@ import lazy.fast.code.core.result.ResultMsg;
  *
  * @author wendell
  */
-public class ForbiddenException extends RuntimeException {
+public class ForbiddenException extends BaseUnCheckException {
 
     /**
      * {"code":403,"msg":"无访问权限"}
