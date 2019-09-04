@@ -7,22 +7,27 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * 数据库工具操作类
+ *
+ * @author wendell
+ */
 public class JdbcUtils {
 
-    private static String user;
-    private static String password;
-    private static String className;
-    private static String url;
+    public static String className;
+    public static String url;
+    public static String user;
+    public static String password;
 
     static {
         InputStream is = JdbcUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
         Properties props = new Properties();
         try {
             props.load(is);
-            className = props.getProperty("jdbc.className");
-            url = props.getProperty("jdbc.url");
-            user = props.getProperty("jdbc.user");
-            password = props.getProperty("jdbc.password");
+            className = props.getProperty("className");
+            url = props.getProperty("url");
+            user = props.getProperty("user");
+            password = props.getProperty("password");
         } catch (IOException e) {
             throw new RuntimeException();
         }

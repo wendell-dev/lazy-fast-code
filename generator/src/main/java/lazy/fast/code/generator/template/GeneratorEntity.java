@@ -1,8 +1,8 @@
 package lazy.fast.code.generator.template;
 
 import lazy.fast.code.generator.Config;
+import lazy.fast.code.generator.util.GeneratorUtils;
 import lazy.fast.code.generator.util.JdbcUtils;
-import lazy.fast.code.generator.util.TemplateBuilder;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class GeneratorEntity implements Generator {
 
     @Override
-    public void generator() {
+    public void generate() {
         boolean isBigDecimal = false;
         boolean isDate = false;
         boolean isTime = false;
@@ -124,7 +124,7 @@ public class GeneratorEntity implements Generator {
                     }
                     attributes.add(dataAttribute);
                 }
-                TemplateBuilder.DATA.put("attributes", attributes);
+                Config.DATA.put("attributes", attributes);
                 if (isBigDecimal) {
                     imports.add("java.math.BigDecimal");
                 }
@@ -138,11 +138,11 @@ public class GeneratorEntity implements Generator {
                     imports.add("java.sql.Timestamp");
                 }
                 if (isImport) {
-                    TemplateBuilder.DATA.put("imports", imports);
+                    Config.DATA.put("imports", imports);
                 }
             }
 
-            TemplateBuilder.build("entity", Config.entityClassName);
+            GeneratorUtils.buildModule("entity", Config.className);
         } catch (Exception e) {
             throw new RuntimeException();
         } finally {

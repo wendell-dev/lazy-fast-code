@@ -10,7 +10,7 @@ public interface Generator {
     /**
      * 生成目标文件
      */
-    void generator();
+    void generate();
 
     /**
      * 字符串下划线转换为驼峰格式
