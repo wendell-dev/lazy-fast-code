@@ -1,11 +1,14 @@
 package lazy.fast.code.demo;
 
-import lazy.fast.code.core.result.ResultMsg;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.spring4all.swagger.EnableSwagger2Doc;
+
+import lazy.fast.code.core.result.ResultMsg;
 
 /**
  * 启动类
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wendell
  */
 @RestController
+@EnableSwagger2Doc
 @SpringBootApplication(scanBasePackages = "lazy.fast.code")
 public class Application {
 
