@@ -7,7 +7,7 @@ import lazy.fast.code.generator.template.GeneratorEntity;
  *
  * @author wendell
  */
-public class Application {
+public class Main {
 
     public static void main(String[] args) {
         // 模板文件根路径, 为空的时候就默认使用内置模板，如果有自定义模板就写模板绝对路径
