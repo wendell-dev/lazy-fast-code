@@ -15,8 +15,10 @@ public class Main {
         Config.moduleTemplateRootPath = null;
         Config.layoutTemplateRootPath = null;
         Config.author = "wendell";
-        // 【必填项】要生成的目标文件根路径(通常是Source Folders)，如果不存在目录会自动创建
-        Config.targetRootPath = "D:\\workspace\\demo\\src\\main\\java";
+        // 【必填项】项目名称
+        Config.projectName = "demo";
+        // 【必填项】项目根路径 - src目录的上层，如果不存在目录会自动创建
+        Config.projectRootPath = "D:\\workspace\\".concat(Config.projectName);
         // 【必填项】要生成的根包名，如果不存在目录会自动创建
         Config.basePackageName = "lazy.fast.code.demo";
 

@@ -37,16 +37,22 @@ public class GeneratorUtils {
     public static void buildLayout() {
         try {
             mkPackageDirs();
+            mkResourcesDirs();
+
             File javaFile = new File(getPackageDirs().concat(File.separator).concat("Application.java"));
             Template template = layoutTemplateConfiguration("main");
             templateProcess(javaFile, template);
-            System.out.println("生成Application文件：" + javaFile.getCanonicalPath());
+            System.out.println("项目骨架 - 生成主应用入口文件：" + javaFile.getCanonicalPath());
 
-            mkResourcesDirs();
             File resourceFile = new File(getResourcesDirs().concat(File.separator).concat("application.yml"));
             template = layoutTemplateConfiguration("resource");
             templateProcess(resourceFile, template);
-            System.out.println("生成资源文件：" + resourceFile.getCanonicalPath());
+            System.out.println("项目骨架 - 生成资源文件：" + resourceFile.getCanonicalPath());
+
+            File pomFile = new File(Config.projectRootPath.concat(File.separator).concat("pom.xml"));
+            template = layoutTemplateConfiguration("pom");
+            templateProcess(pomFile, template);
+            System.out.println("项目骨架 - 生成pom文件：" + pomFile.getCanonicalPath());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -103,28 +109,30 @@ public class GeneratorUtils {
     }
 
     /**
-     * 获取包目录：目标文件根路径 + 包名
+     * 获取包目录：项目根路径 + 包名
      */
     private static String getPackageDirs() {
-        return Config.targetRootPath.concat(File.separator).concat(packageNameToDirs());
+        return Config.projectRootPath.concat(File.separator).concat("src").concat(File.separator).concat("main")
+            .concat(File.separator).concat("java").concat(File.separator).concat(packageNameToDirs());
     }
 
     /**
-     * 获取资源目录：目标文件根路径 + resources
+     * 获取资源目录：项目根路径 + resources
      */
     private static String getResourcesDirs() {
-        return Config.targetRootPath.concat(File.separator).concat("resources");
+        return Config.projectRootPath.concat(File.separator).concat("src").concat(File.separator).concat("main")
+            .concat(File.separator).concat("resources");
     }
 
     /**
-     * 获取模块目录：目标文件根路径 + 包名 + 模块名
+     * 获取模块目录：项目根路径 + 包名 + 模块名
      */
     private static String getModuleDirs() {
         return getPackageDirs().concat(File.separator).concat(Config.moduleName);
     }
 
     /**
-     * 获取模块Java类路径：目标文件根路径 + 包名 + 模块名 + ${className}.java
+     * 获取模块Java类路径：项目根路径 + 包名 + 模块名 + ${className}.java
      */
     private static String getModuleJavaPath(String className) {
         return getModuleDirs().concat(File.separator).concat(className).concat(".java");

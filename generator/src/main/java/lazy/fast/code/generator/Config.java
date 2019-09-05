@@ -20,9 +20,13 @@ public class Config {
      */
     public static String layoutTemplateRootPath;
     /**
-     * 要生成的目标文件根路径
+     * 项目根路径 - src目录的上层
      */
-    public static String targetRootPath;
+    public static String projectRootPath;
+    /**
+     * 项目名
+     */
+    public static String projectName;
     /**
      * 作者签名
      */
@@ -52,6 +56,7 @@ public class Config {
      * 模板填充数据值
      */
     public static void initTemplateData() {
+        DATA.put("projectName", projectName);
         DATA.put("author", author);
         DATA.put("basePackageName", basePackageName);
         DATA.put("moduleName", moduleName);
