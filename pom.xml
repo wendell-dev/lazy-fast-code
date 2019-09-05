@@ -16,8 +16,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>code-parent</name>
-    <description>lazyFastCode 聚合模块</description>
+    <name>LazyFastCode Parent</name>
+    <description>Parent pom providing dependency for lazyFastCode applications built with Maven</description>
     <url>https://github.com/wendell-dev/lazy-fast-code</url>
 
     <developers>
