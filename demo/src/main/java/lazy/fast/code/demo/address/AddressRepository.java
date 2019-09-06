@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import lazy.fast.code.core.orm.BaseRepository;
 
 /**
- * 地址信息 - repository
+ * 地址信息
  *
  * @author wendell
  */

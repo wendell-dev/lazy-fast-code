@@ -20,7 +20,7 @@ import java.net.URI;
 import java.util.List;
 
 /**
- * 用户信息 - controller
+ * 用户信息
  *
  * @author wendell
  */
@@ -39,14 +39,14 @@ public class UserController extends BaseController<User> {
     @ApiOperation(value = "获取用户信息列表")
     @GetMapping
     public List<User> list() {
-        return super.getService().list(null);
+        return this.getBaseService().list(null);
     }
 
     @ApiOperation(value = "根据ID获取用户信息")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户ID", required = true, paramType = "path")})
     @GetMapping("/{id}")
     public User get(@PathVariable Long id) {
-        return this.getService().get(id);
+        return this.getBaseService().get(id);
     }
 
     @ApiOperation(value = "获取用户信息列表 - 使用Repository中的自定义方法")
@@ -64,14 +64,14 @@ public class UserController extends BaseController<User> {
     @ApiOperation(value = "保存用户信息")
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody User user) {
-        super.getService().save(user);
+        this.getBaseService().save(user);
         return ResponseEntity.created(URI.create("/users/" + user.getId())).build();
     }
 
     @ApiOperation(value = "更新用户信息")
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody User user) {
-        super.getService().update(user);
+        this.getBaseService().update(user);
         return ResponseEntity.noContent().build();
     }
 
@@ -79,7 +79,7 @@ public class UserController extends BaseController<User> {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户ID", required = true, paramType = "path")})
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        super.getService().remove(id);
+        this.getBaseService().remove(id);
         return ResponseEntity.noContent().build();
     }
 

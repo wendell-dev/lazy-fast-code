@@ -18,7 +18,7 @@ import java.net.URI;
 import java.util.List;
 
 /**
- * 地址信息 - controller
+ * 地址信息
  *
  * @author wendell
  */
@@ -34,20 +34,20 @@ public class AddressController extends BaseController<Address> {
     @ApiOperation(value = "获取地址信息列表")
     @GetMapping
     public List<Address> list() {
-        return this.getService().list(null);
+        return this.getBaseService().list(null);
     }
 
     @ApiOperation(value = "根据ID获取地址信息")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "地址ID", required = true, paramType = "path")})
     @GetMapping("/{id}")
     public Address get(@PathVariable Long id) {
-        return this.getService().get(id);
+        return this.getBaseService().get(id);
     }
 
     @ApiOperation(value = "保存用户信息")
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody Address address) {
-        super.getService().save(address);
+        this.getBaseService().save(address);
         return ResponseEntity.created(URI.create("/address/" + address.getId())).build();
     }
 

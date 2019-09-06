@@ -5,7 +5,7 @@ import lazy.fast.code.core.orm.BaseService;
 import java.util.List;
 
 /**
- * 用户信息 - service
+ * 用户信息
  *
  * @author wendell
  */

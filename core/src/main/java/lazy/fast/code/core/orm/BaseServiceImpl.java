@@ -30,55 +30,55 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
      * 
      * @return Repository操作对象
      */
-    protected BaseRepository<T> getRepository() {
+    protected BaseRepository<T> getBaseRepository() {
         return baseRepository;
     }
 
     @Override
     public int save(T record) {
-        return this.getRepository().insertSelective(record);
+        return this.getBaseRepository().insertSelective(record);
     }
 
     @Override
     public int update(T record) {
         Assert.notNull(record.getId(), "primary-key must be not null");
-        return this.getRepository().updateByPrimaryKeySelective(record);
+        return this.getBaseRepository().updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int remove(Serializable key) {
         Assert.notNull(key, "primary-key must be not null");
-        return this.getRepository().deleteByPrimaryKey(key);
+        return this.getBaseRepository().deleteByPrimaryKey(key);
     }
 
     @Override
     public int remove(T record) {
-        return this.getRepository().delete(record);
+        return this.getBaseRepository().delete(record);
     }
 
     @Override
     public T get(Serializable key) {
-        return this.getRepository().selectByPrimaryKey(key);
+        return this.getBaseRepository().selectByPrimaryKey(key);
     }
 
     @Override
     public T get(T record) {
-        return this.getRepository().selectOne(record);
+        return this.getBaseRepository().selectOne(record);
     }
 
     @Override
     public List<T> list(T record) {
-        return this.getRepository().select(record);
+        return this.getBaseRepository().select(record);
     }
 
     @Override
     public List<T> listPage(T record, int offset, int limit) {
-        return this.getRepository().selectByRowBounds(record, new RowBounds(offset, limit));
+        return this.getBaseRepository().selectByRowBounds(record, new RowBounds(offset, limit));
     }
 
     @Override
     public int count(T record) {
-        return this.getRepository().selectCount(record);
+        return this.getBaseRepository().selectCount(record);
     }
 
 }

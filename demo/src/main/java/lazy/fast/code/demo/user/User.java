@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 用户信息 - entity
+ * 用户信息
  *
  * @author wendell
  */
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "sys_user")
 @Data(staticConstructor = "of")
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "User", description = "用户信息 - entity")
+@ApiModel(value = "User", description = "用户信息")
 public class User extends BaseEntity<Long> {
 
     /**

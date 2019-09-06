@@ -5,6 +5,11 @@ import lazy.fast.code.generator.util.JdbcUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 配置信息
+ *
+ * @author wendell
+ */
 public class Config {
 
     /**

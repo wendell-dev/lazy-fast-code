@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 用户信息 - service - impl
+ * 用户信息
  *
  * @author wendell
  */
@@ -37,7 +37,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
     @Override
     public List<UserAddressDTO> listUserAddress() {
-        List<User> users = super.list(null);
+        List<User> users = this.list(null);
         if (CollectionUtils.isEmpty(users)) {
             throw new NoContentNotException();
         }

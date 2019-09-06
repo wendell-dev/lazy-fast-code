@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * 用户信息 - repository
+ * 用户信息
  *
  * @author wendell
  */

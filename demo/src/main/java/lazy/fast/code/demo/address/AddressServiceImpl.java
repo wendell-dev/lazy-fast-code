@@ -6,7 +6,7 @@ import lazy.fast.code.core.orm.BaseRepository;
 import lazy.fast.code.core.orm.BaseServiceImpl;
 
 /**
- * 地址信息 - service - impl
+ * 地址信息
  *
  * @author wendell
  */

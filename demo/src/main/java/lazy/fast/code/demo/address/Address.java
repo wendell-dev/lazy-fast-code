@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 地址信息 - entity
+ * 地址信息
  *
  * @author wendell
  */
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "address")
 @Data(staticConstructor = "of")
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Address", description = "地址信息 - entity")
+@ApiModel(value = "Address", description = "地址信息")
 public class Address extends BaseEntity<Long> {
 
     /**

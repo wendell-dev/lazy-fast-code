@@ -14,7 +14,7 @@ import ${import};
 </#list></#if>
 
 /**
-* ${classDescription} - entity
+* ${classDescription}
 *
 * @author ${author}
 * @date ${.now?string("yyyy-MM-dd HH:mm")}
@@ -23,7 +23,7 @@ import ${import};
 @Table(name = "${tableName}")
 @Data(staticConstructor = "of")
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "${className?cap_first}", description = "${classDescription} - entity")
+@ApiModel(value = "${className?cap_first}", description = "${classDescription}")
 public class ${className?cap_first} extends BaseEntity<Long> {
 
     <#list attributes as attribute>

@@ -23,7 +23,7 @@ public abstract class BaseController<T extends BaseEntity> {
      *
      * @return Service操作对象
      */
-    protected BaseService<T> getService() {
+    protected BaseService<T> getBaseService() {
         return baseService;
     }
 
