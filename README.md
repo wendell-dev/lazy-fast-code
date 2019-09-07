@@ -8,41 +8,59 @@ LazyFastCode 可用于快速构建 Spring Boot 2.x 应用工程骨架，自动�
 参考Maven官网
 [Introduction to the Standard Directory Layout](http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
 
-    lazy-fast-code/
+    | - - - - - - - - - - - - - - - - - - - -- - - - - - - - - -- - - - - - - - - -- - - - - - - - - - - - - -
+    | - - - - - - - - - - - - - - - - - - - -- - - - - - - - - -- - - - - - - - - -- - - - - - - - - - - - - -
+    +- lazy-fast-code
+    | |
+    | +- core  - - - - LazyFastCode核心类集合，会打成Maven-jar包，供其它项目/模块依赖
+    | |      +- src/
+    | |      |    +- main
+    | |      |        +- java
+    | |      |            +- lazy.fast.code.core
+    | |      +- pom.xml
+    | |
+    | |
+    | +- generator  - - - - LazyFastCode代码生成器，与Mybatis的生成器无关，基于FreeMarker定制开发，简单易懂、可定制化高
+    | |      +- src
+    | |      |    +- main
+    | |      |        +- java
+    | |      |        |    +- lazy.fast.code.generator
+    | |      |        |        +- Main.java
+    | |      |        +- resources
+    | |      |            +- template
+    | |      |                +- xxx.ftl
+    | |      +- pom.xml
+    | |   
+    | |   
+    | +- demo  - - - - 演示用例，实际中应该由LazyFastCode代码生成器生成一个单独的项目
+    | |      +- src
+    | |      |    +- main
+    | |      |        +- java
+    | |      |        |    +- lazy.fast.code.demo
+    | |      |        |        +- Application.java
+    | |      |        |        |
+    | |      |        |        +- address
+    | |      |        |        |    +- Address.java
+    | |      |        |        |    +- AddressController.java
+    | |      |        |        |    +- AddressRepository.java
+    | |      |        |        |    +- AddressService.java
+    | |      |        |        |    +- AddressServiceImpl.java
+    | |      |        |        |
+    | |      |        |        +- user
+    | |      |        |         |   +- User.java
+    | |      |        |         |   +- UserController.java
+    | |      |        |         |   +- UserRepository.java
+    | |      |        |         |   +- UserService.java
+    | |      |        |         |   +- UserServiceImpl.java
+    | |      |        +- resources
+    | |      |            +- application.yml
+    | |      +- pom.xml
+    | |
+    | |
+    | +- pom.xml
+    | - - - - - - - - - - - - - - - - - - - -- - - - - - - - - -- - - - - - - - - -- - - - - - - - - - - - - -
     | - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - -
-    | - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - -
-    | - core/ - - - - LazyFastCode核心类集合，会打成Maven-jar包，供其它项目/模块依赖
-    |   |   src/
-    |   |   |   main
-    |   |   |       java
-    |   |   |           lazy.fast.code.core
-    |   |   pom.xml
-    |   |
-    |   |
-    | - generator/ - - - - LazyFastCode代码生成器，与Mybatis的生成器无关，基于FreeMarker定制开发，简单易懂、可定制化高
-    |   |   src/
-    |   |   |   main
-    |   |   |       java
-    |   |   |           lazy.fast.code.generator
-    |   |   |               Main.java
-    |   |   |       resources
-    |   |   |           template
-    |   |   |               xxx.ftl
-    |   |   pom.xml
-    |   |
-    |   |
-    | - demo/ - - - - 演示用例，实际中应该由LazyFastCode代码生成器生成一个单独的项目
-    |   |   src/
-    |   |   |   main
-    |   |   |       java
-    |   |   |           lazy.fast.code.demo
-    |   |   |               Application.java
-    |   |   |       resources
-    |   |   |           application.yml
-    |   |   pom.xml
-    | - pom.xml
-    | - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - -
-    | - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - -
+
 
 ## 集成的组件
 - [Spring Boot 2.1.7](https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/)
