@@ -2,7 +2,7 @@ package lazy.fast.code.demo.address;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lazy.fast.code.core.orm.BaseEntity;
+import lazy.fast.code.demo.core.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Data(staticConstructor = "of")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Address", description = "地址信息")
-public class Address extends BaseEntity<Long> {
+public class Address extends BaseEntity {
 
     /**
      * 城市名称

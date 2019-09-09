@@ -63,9 +63,9 @@ public class UserController extends BaseController<User> {
 
     @ApiOperation(value = "保存用户信息")
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody User user) {
+    public ResponseEntity<User> save(@RequestBody User user) {
         this.getBaseService().save(user);
-        return ResponseEntity.created(URI.create("/users/" + user.getId())).build();
+        return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
     }
 
     @ApiOperation(value = "更新用户信息")
