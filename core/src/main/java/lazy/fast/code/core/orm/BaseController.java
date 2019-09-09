@@ -5,6 +5,8 @@ import lazy.fast.code.core.exception.SystemException;
 /**
  * 基础Controller
  *
+ * @param <T>
+ *            不能为空
  * @author wendell
  */
 public abstract class BaseController<T extends BaseEntity> {

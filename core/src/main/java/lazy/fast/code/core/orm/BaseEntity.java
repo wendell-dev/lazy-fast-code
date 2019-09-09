@@ -18,6 +18,9 @@ import java.time.LocalDateTime;
  *     参考《阿里巴巴Java开发手册》, 表必备三字段
  * </pre>
  *
+ * @param <ID>
+ *            不能为空 (自定义BaseEntity时没有此限制)
+ *
  * @author wendell
  */
 @MappedSuperclass
