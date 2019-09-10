@@ -22,9 +22,9 @@ public class GeneratorEntity implements Generator {
     @Override
     public void generate() {
         boolean isBigDecimal = false;
-        boolean isDate = false;
-        boolean isTime = false;
-        boolean isTimestamp = false;
+        boolean isLocalDate = false;
+        boolean isLocalTime = false;
+        boolean isLocalDateTime = false;
         boolean isImport = false;
         List<String> imports = new ArrayList<>();
 
@@ -41,19 +41,13 @@ public class GeneratorEntity implements Generator {
                     }
                     dataAttribute = new HashMap<>(16);
                     switch (rsColumns.getString("TYPE_NAME")) {
-                        // https://www.cnblogs.com/jerrylz/p/5814460.html对照表
                         case "BLOB":
                             dataAttribute.put("type", "Byte[]");
                             break;
                         case "INT":
-                            dataAttribute.put("type", "Integer");
-                            break;
+                        case "BOOLEAN":
                         case "TINYINT":
-                            dataAttribute.put("type", "Integer");
-                            break;
                         case "SMALLINT":
-                            dataAttribute.put("type", "Integer");
-                            break;
                         case "MEDIUMINT":
                             dataAttribute.put("type", "Integer");
                             break;
@@ -65,6 +59,7 @@ public class GeneratorEntity implements Generator {
                             dataAttribute.put("type", "Boolean");
                             break;
                         case "INTEGER":
+                        case "ID":
                             dataAttribute.put("type", "Long");
                             break;
                         case "FLOAT":
@@ -73,36 +68,22 @@ public class GeneratorEntity implements Generator {
                         case "DOUBLE":
                             dataAttribute.put("type", "Double");
                             break;
-                        case "ID":
-                            dataAttribute.put("type", "Long");
-                            break;
-                        case "BOOLEAN":
-                            dataAttribute.put("type", "Integer");
-                            break;
                         case "DATE":
-                            isImport = true;
-                            isDate = true;
-                            dataAttribute.put("type", "Date");
-                            break;
                         case "YEAR":
                             isImport = true;
-                            isDate = true;
-                            dataAttribute.put("type", "Date");
+                            isLocalDate = true;
+                            dataAttribute.put("type", "LocalDate");
                             break;
                         case "TIME":
                             isImport = true;
-                            isTime = true;
-                            dataAttribute.put("type", "Time");
+                            isLocalTime = true;
+                            dataAttribute.put("type", "LocalTime");
                             break;
                         case "DATETIME":
-                            isImport = true;
-                            isTimestamp = true;
-                            dataAttribute.put("type", "Timestamp");
-                            break;
                         case "TIMESTAMP":
                             isImport = true;
-                            isTimestamp = true;
-                            dataAttribute.put("type", "Timestamp");
+                            isLocalDateTime = true;
+                            dataAttribute.put("type", "LocalDateTime");
                             break;
                         case "DECIMAL":
                             isImport = true;
@@ -128,14 +109,14 @@ public class GeneratorEntity implements Generator {
                 if (isBigDecimal) {
                     imports.add("java.math.BigDecimal");
                 }
-                if (isDate) {
-                    imports.add("java.sql.Date");
+                if (isLocalDate) {
+                    imports.add("java.time.LocalDate");
                 }
-                if (isTime) {
-                    imports.add("java.sql.Time");
+                if (isLocalTime) {
+                    imports.add("java.time.LocalTime");
                 }
-                if (isTimestamp) {
-                    imports.add("java.sql.Timestamp");
+                if (isLocalDateTime) {
+                    imports.add("java.time.LocalDateTime");
                 }
                 if (isImport) {
                     Config.DATA.put("imports", imports);
