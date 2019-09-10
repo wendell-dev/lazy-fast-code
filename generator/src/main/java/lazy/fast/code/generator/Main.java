@@ -3,6 +3,7 @@ package lazy.fast.code.generator;
 import lazy.fast.code.generator.template.GeneratorEntity;
 import lazy.fast.code.generator.template.GeneratorLayout;
 import lazy.fast.code.generator.template.GeneratorRepository;
+import lazy.fast.code.generator.template.GeneratorService;
 
 /**
  * 启动类
@@ -74,7 +75,9 @@ public class Main {
     /**
      * 生成Service接口
      */
-    private static void generateService() {}
+    private static void generateService() {
+        new GeneratorService().generate();
+    }
 
     /**
      * 生成Service实现类
