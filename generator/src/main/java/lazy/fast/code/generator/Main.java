@@ -2,6 +2,7 @@ package lazy.fast.code.generator;
 
 import lazy.fast.code.generator.template.GeneratorEntity;
 import lazy.fast.code.generator.template.GeneratorLayout;
+import lazy.fast.code.generator.template.GeneratorRepository;
 
 /**
  * 启动类
@@ -66,7 +67,9 @@ public class Main {
     /**
      * 生成Mapper接口
      */
-    private static void generateRepository() {}
+    private static void generateRepository() {
+        new GeneratorRepository().generate();
+    }
 
     /**
      * 生成Service接口

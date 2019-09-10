@@ -14,11 +14,11 @@ import ${import};
 </#list></#if>
 
 /**
-* ${classDescription}
-*
-* @author ${author}
-* @date ${.now?string("yyyy-MM-dd HH:mm")}
-*/
+ * ${classDescription}
+ *
+ * @author ${author}
+ * @date ${.now?string("yyyy-MM-dd HH:mm")}
+ */
 @Entity
 @Table(name = "${tableName}")
 @Data(staticConstructor = "of")
