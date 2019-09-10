@@ -1,12 +1,17 @@
 spring:
+  application:
+    name: ${projectName}
   datasource:
     url: ${jdbcUrl}
     username: ${jdbcUser}
     password: ${jdbcPassword}
     driver-class-name: ${jdbcClassName}
-    tomcat:
-      max-wait: 10000
-      max-active: 20
-      test-on-borrow: true
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
 swagger:
   exclude-path: /error
