@@ -36,7 +36,9 @@ public class GeneratorEntity implements Generator {
                 List<Map<String, Object>> attributes = new ArrayList<>();
                 Map<String, Object> dataAttribute;
                 while (rsColumns.next()) {
-                    if ("id".equals(rsColumns.getString("COLUMN_NAME"))) {
+                    if ("id".equals(rsColumns.getString("COLUMN_NAME"))
+                        || "gmt_create".equals(rsColumns.getString("COLUMN_NAME"))
+                        || "gmt_modified".equals(rsColumns.getString("COLUMN_NAME"))) {
                         continue;
                     }
                     dataAttribute = new HashMap<>(16);
