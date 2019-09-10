@@ -4,6 +4,7 @@ import lazy.fast.code.generator.template.GeneratorEntity;
 import lazy.fast.code.generator.template.GeneratorLayout;
 import lazy.fast.code.generator.template.GeneratorRepository;
 import lazy.fast.code.generator.template.GeneratorService;
+import lazy.fast.code.generator.template.GeneratorServiceImpl;
 
 /**
  * 启动类
@@ -82,7 +83,9 @@ public class Main {
     /**
      * 生成Service实现类
      */
-    private static void generateServiceImpl() {}
+    private static void generateServiceImpl() {
+        new GeneratorServiceImpl().generate();
+    }
 
     /**
      * 生成Controller
