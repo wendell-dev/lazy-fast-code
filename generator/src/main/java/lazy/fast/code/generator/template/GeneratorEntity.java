@@ -95,7 +95,7 @@ public class GeneratorEntity implements Generator {
                             break;
                     }
                     // 数据库的字段如果是下划线的转为驼峰命名
-                    dataAttribute.put("name", camelCaseName(rsColumns.getString("COLUMN_NAME")));
+                    dataAttribute.put("name", underscoreConvertToCamelCase(rsColumns.getString("COLUMN_NAME")));
                     // 数据库的原始字段名
                     dataAttribute.put("column", rsColumns.getString("COLUMN_NAME"));
                     if (null == rsColumns.getString("REMARKS") || "".equals(rsColumns.getString("REMARKS"))) {

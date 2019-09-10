@@ -1,5 +1,6 @@
 package lazy.fast.code.generator;
 
+import lazy.fast.code.generator.template.GeneratorController;
 import lazy.fast.code.generator.template.GeneratorEntity;
 import lazy.fast.code.generator.template.GeneratorLayout;
 import lazy.fast.code.generator.template.GeneratorRepository;
@@ -32,7 +33,7 @@ public class Main {
         Config.moduleName = "user";
         // 【必填项】数据库表全名
         Config.tableName = "sys_user";
-        // 【必填项】类名字, 首字母大写
+        // 【必填项】类名字, 首字母大写, 以驼峰格式命名
         Config.className = "User";
         // 【必填项】类描述
         Config.classDescription = "用户信息";
@@ -90,6 +91,8 @@ public class Main {
     /**
      * 生成Controller
      */
-    private static void generateController() {}
+    private static void generateController() {
+        new GeneratorController().generate();
+    }
 
 }
