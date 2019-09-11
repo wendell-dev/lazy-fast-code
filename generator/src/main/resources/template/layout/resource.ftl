@@ -15,6 +15,7 @@ spring:
       connection-test-query: SELECT 1
 mybatis:
   configuration:
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 swagger:
   exclude-path: /error
