@@ -62,7 +62,11 @@ public class Config {
      */
     public static void initTemplateData() {
         DATA.put("projectName", projectName);
-        DATA.put("author", author);
+        if (null == author || "".equals(author)) {
+            DATA.put("author", System.getProperty("user.name"));
+        } else {
+            DATA.put("author", author);
+        }
         DATA.put("basePackageName", basePackageName);
         DATA.put("moduleName", moduleName);
         DATA.put("tableName", tableName);
