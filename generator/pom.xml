@@ -16,6 +16,10 @@
     <name>code-generator</name>
     <description>lazyFastCode 代码生成器</description>
 
+    <properties>
+        <start-class>lazy.fast.code.generator.Generator</start-class>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.freemarker</groupId>
@@ -30,5 +34,14 @@
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

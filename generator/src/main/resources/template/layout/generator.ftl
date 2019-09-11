@@ -26,8 +26,8 @@ public class GeneratorTest {
         // 【必填项】要生成的根包名，如果不存在目录会自动创建
         Config.basePackageName = "lazy.fast.code.demo";
 
-        // 生成项目骨架
-        Generator.generateLayout();
+        // 生成项目骨架, 需要的时候可开启
+        // Generator.generateLayout();
 
         // 【必填项】要生成的模块名称，如 user、order
         Config.moduleName = "user";
