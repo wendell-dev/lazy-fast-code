@@ -1,5 +1,28 @@
 ## 简介
-LazyFastCode 可用于快速构建 Spring Boot 2.x 应用工程骨架，自动生成基于SpringMVC的RESTFul API架构风格，同时集成了MyBatis通用Mapper模块、通用分页模块、Lombok工具包以及API在线文档Swagger等，旨在帮助JAVA后端API开发人员能够更快速的专注于业务代码开发。
+LazyFastCode 可用于快速的构建一个 Spring Boot 2.x 应用工程骨架，并可自动生成基于SpringMVC的RESTFul API架构风格，同时集成了MyBatis通用Mapper、通用分页PageHelper、Lombok工具包以及API在线文档Swagger等，旨在帮助JAVA后端API开发人员能够更快速的专注于业务代码开发。
+
+## Demo示例RESTFul API服务
+- 运行demo
+- 访问接口文档地址 http://localhost:8080/swagger-ui.html
+
+![demo-swagger.jpg](https://github.com/wendell-dev/resource-static/blob/master/lazy-fast-code/demo-swagger.jpg)
+
+
+## RESTFul API
+你可以通过项目中的 [demo](https://github.com/wendell-dev/lazy-fast-code/tree/master/demo) 模块查看示例RESTFul API服务(这是基于我们的LazyFastCode代码生成器自动完成的)。 
+
+对于RESTFul API服务各有各的见解，网上大多是采用封装一个Result类在controller层作为统一格式返回，通常情况下，不管你怎么请求，它总是响应你的http状态码为200。 
+
+而本项目中的理念是充分结合HTTP状态码规范，使用ResponseEntity + HttpStatus的方式完成我们的API。当然，你想做一个完全具有RESTFul风格的API，你还需要具有良好的RESTFul风格的资源设计能力。
+
+
+## 全局异常处理
+采用@RestControllerAdvice + @ExceptionHandler的方式对全局异常进行处理，同时加入了常见的一些自定义异常类。
+
+
+## 参数验证器
+完全遵守JSR-303规范，采用spring提供的@Validated注解结合hibernate的validator进行验证，你只需要在你的验证实体对象中使用验证注解，如@NotNull、@NotBlank等，同时在你的controller方法中加入@Validated注解即可，验证结果信息的处理已经由全局异常处理器帮你做好了。
+
 
 ## LazyFastCode结构一览
 参考Spring官网
