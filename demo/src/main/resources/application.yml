@@ -2,7 +2,7 @@ spring:
   application:
     name: code-demo
   datasource:
-    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,6 +15,7 @@ spring:
       connection-test-query: SELECT 1
 mybatis:
   configuration:
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 swagger:
   exclude-path: /error
