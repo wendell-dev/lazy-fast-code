@@ -1,9 +1,14 @@
-package lazy.fast.code.generator;
+package ${basePackageName};
+
+import lazy.fast.code.generator.Config;
+import lazy.fast.code.generator.Generator;
 
 /**
  * LazyFastCode代码生成器
- * 
+ *
  * @author wendell
+ * @date ${.now?string("yyyy-MM-dd HH:mm")}
+ * @see <a href="https://github.com/wendell-dev/lazy-fast-code">LazyFastCode代码生成器</a>
  */
 public class GeneratorTest {
 

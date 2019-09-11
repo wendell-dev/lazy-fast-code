@@ -38,6 +38,7 @@ public class GeneratorUtils {
         try {
             mkPackageDirs();
             mkResourcesDirs();
+            mkTestPackageDirs();
 
             File javaFile = new File(getPackageDirs().concat(File.separator).concat("Application.java"));
             Template template = layoutTemplateConfiguration("main");
@@ -53,6 +54,11 @@ public class GeneratorUtils {
             template = layoutTemplateConfiguration("pom");
             templateProcess(pomFile, template);
             System.out.println("项目骨架 - 生成pom文件：" + pomFile.getCanonicalPath());
+
+            File generatorFile = new File(getTestPackageDirs().concat(File.separator).concat("GeneratorTest.java"));
+            template = layoutTemplateConfiguration("generator");
+            templateProcess(generatorFile, template);
+            System.out.println("项目骨架 - 生成LazyFastCode代码生成器入口文件：" + generatorFile.getCanonicalPath());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -89,6 +95,16 @@ public class GeneratorUtils {
     }
 
     /**
+     * 创建测试包目录：目标文件根路径 + 包名
+     */
+    private static void mkTestPackageDirs() {
+        String targetDirs = getTestPackageDirs();
+        if (new File(targetDirs).mkdirs()) {
+            System.out.println("生成测试包目录：" + targetDirs);
+        }
+    }
+
+    /**
      * 创建资源目录：目标文件根路径 + resources
      */
     private static void mkResourcesDirs() {
@@ -114,6 +130,14 @@ public class GeneratorUtils {
     private static String getPackageDirs() {
         return Config.projectRootPath.concat(File.separator).concat("src").concat(File.separator).concat("main")
             .concat(File.separator).concat("java").concat(File.separator).concat(packageNameToDirs());
+    }
+
+    /**
+     * 获取测试包目录：项目根路径 + 包名
+     */
+    private static String getTestPackageDirs() {
+        return Config.projectRootPath.concat(File.separator).concat("src").concat(File.separator).concat("test")
+                .concat(File.separator).concat("java").concat(File.separator).concat(packageNameToDirs());
     }
 
     /**
