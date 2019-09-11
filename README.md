@@ -9,9 +9,9 @@ LazyFastCode 可用于快速的构建一个 Spring Boot 2.x 应用工程骨架�
 
 
 ## RESTFul API
-你可以通过项目中的 [demo](https://github.com/wendell-dev/lazy-fast-code/tree/master/demo) 模块查看示例RESTFul API服务(这是基于我们的LazyFastCode代码生成器自动完成的)。 
+你可以通过项目中的 [demo](https://github.com/wendell-dev/lazy-fast-code/tree/master/demo) 模块查看示例RESTFul API服务（这是基于我们的LazyFastCode代码生成器自动完成的）。 
 
-对于RESTFul API服务各有各的见解，网上大多是采用封装一个Result类在controller层作为统一格式返回，通常情况下，不管你怎么请求，它总是响应你的http状态码为200。 
+对于RESTFul API服务各有各的见解，网上大多是采用封装一个Result类在controller层作为统一格式返回，通常情况下，不管你怎么请求，它总是响应你的HTTP状态码为200。 
 
 而本项目中的理念是充分结合HTTP状态码规范，使用ResponseEntity + HttpStatus的方式完成我们的API。当然，你想做一个完全具有RESTFul风格的API，你还需要具有良好的RESTFul风格的资源设计能力。
 
