@@ -1,6 +1,15 @@
 ## 简介
 LazyFastCode 可用于快速的构建一个 Spring Boot 2.x 应用工程骨架，并可自动生成基于SpringMVC的RESTFul API架构风格，同时集成了MyBatis通用Mapper、通用分页PageHelper、Lombok工具包以及API在线文档Swagger等，旨在帮助JAVA后端API开发人员能够更快速的专注于业务代码开发。
 
+## 快速开始
+```
+git clone https://github.com/wendell-dev/lazy-fast-code.git
+cd lazy-fast-code
+mvn clean install
+java -Dfile.encoding=utf-8 -jar generator/target/code-generator-1.0-SNAPSHOT.jar author=wendell projectName=demo projectRootPath=D:\workspace\demo basePackageName=lazy.fast.code.demo
+```
+
+
 ## Demo示例RESTFul API服务
 - 运行demo
 - 访问接口文档地址 http://localhost:8080/swagger-ui.html
