@@ -1,17 +1,68 @@
 ## 简介
 LazyFastCode 可用于快速的构建一个 Spring Boot 2.x 应用工程骨架，并可自动生成基于SpringMVC的RESTFul API架构风格，同时集成了MyBatis通用Mapper、通用分页PageHelper、Lombok工具包以及API在线文档Swagger等，旨在帮助JAVA后端API开发人员能够更快速的专注于业务代码开发。
 
+
 ## 快速开始
+- 生成项目骨架
 ```
+# 克隆LazyFastCode项目到你本地目录
 git clone https://github.com/wendell-dev/lazy-fast-code.git
+
+# 进入LazyFastCode项目根目录
 cd lazy-fast-code
+
+# 执行maven
 mvn clean install
-java -Dfile.encoding=utf-8 -jar generator/target/code-generator-1.0-SNAPSHOT.jar author=wendell projectName=demo projectRootPath=D:\workspace\demo basePackageName=lazy.fast.code.demo
+
+# 执行生成项目骨架命令
+# 参数说明： 
+#     author 生成类注释@author，如：author=wendell
+#     project.name 【必填项】项目名称，如：project.name=xxx-demo
+#     project.path 【必填项】项目根路径，如：project.path=D:\\workspace
+#     project.package 【必填项】包名，如：project.package=com.xxx.demo
+java -Dauthor=wendell -Dproject.name=xxx-demo -Dproject.path=D:\\workspace -Dproject.package=com.xxx.demo -jar generator/target/code-generator-1.0-SNAPSHOT-exec.jar
+
+# 导入新生成的D:\\workspace\\xxx-demo项目到你的IDE中, 你可以尽情的进行业务开发了
 ```
+
+- 新生成的项目结构一览
+```
+生成的典型的 Spring Boot Maven 工程结构
+
++- xxx-demo
+    +- src
+    |   +- main
+    |   |   +- java
+    |   |   |   +- com.xxx.demo
+    |   |   |       +- Application.java
+    |   |   +- resources
+    |   |   |   +- application.yml
+    |   +- test
+    |       +- java
+    |       |   +- com.xxx.demo
+    |       |       +- GeneratorTest.java
+    +- pom.xml
+```
+
+- 生成模块类
+TODO
 
 
 ## Demo示例RESTFul API服务
-- 运行demo
+```
+# 克隆LazyFastCode项目到你本地目录
+git clone https://github.com/wendell-dev/lazy-fast-code.git
+
+# 进入LazyFastCode项目demo目录
+cd lazy-fast-code/demo
+
+# 执行maven
+mvn clean package
+
+# 执行启动命令
+java -jar target/code-demo-1.0-SNAPSHOT.jar
+```
+
 - 访问接口文档地址 http://localhost:8080/swagger-ui.html
 
 ![demo-swagger.jpg](https://github.com/wendell-dev/resource-static/blob/master/lazy-fast-code/demo-swagger.jpg)
@@ -55,15 +106,19 @@ java -Dfile.encoding=utf-8 -jar generator/target/code-generator-1.0-SNAPSHOT.jar
     | +- generator  - - - - LazyFastCode代码生成器，与Mybatis的生成器无关，基于FreeMarker定制开发，简单易懂、可定制化高
     | |      +- src
     | |      |    +- main
+    | |      |    |   +- java
+    | |      |    |   |    +- lazy.fast.code.generator
+    | |      |    |   |        +- QuickStart.java
+    | |      |    |   +- resources
+    | |      |    |   |    +- template
+    | |      |    |   |        +- xxx.ftl
+    | |      |    +- test
     | |      |        +- java
     | |      |        |    +- lazy.fast.code.generator
-    | |      |        |        +- Main.java
-    | |      |        +- resources
-    | |      |            +- template
-    | |      |                +- xxx.ftl
+    | |      |        |        +- GeneratorTest.java
     | |      +- pom.xml
-    | |   
-    | |   
+    | |
+    | |
     | +- demo  - - - - 演示用例，实际中应该由LazyFastCode代码生成器生成一个单独的项目
     | |      +- src
     | |      |    +- main
