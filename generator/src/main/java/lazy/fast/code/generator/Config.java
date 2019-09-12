@@ -61,7 +61,7 @@ public class Config {
      * 模板填充数据值
      */
     public static void initTemplateData() {
-        DATA.put("projectRootPath ", projectRootPath);
+        DATA.put("projectRootPath", projectRootPath);
         DATA.put("projectName", projectName);
         if (null == author || "".equals(author)) {
             DATA.put("author", System.getProperty("user.name"));

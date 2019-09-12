@@ -1,5 +1,7 @@
 package lazy.fast.code.generator;
 
+import java.io.File;
+
 /**
  * 启动类
  * 
@@ -32,7 +34,7 @@ public class QuickStart {
             System.out.println("项目根路径必传, 如 project.path=D:\\workspace\\demo");
             return;
         }
-        Config.projectRootPath = Config.projectRootPath.concat(Config.projectName);
+        Config.projectRootPath = Config.projectRootPath.concat(File.separator).concat(Config.projectName);
 
         // 【必填项】要生成的根包名，如果不存在目录会自动创建
         Config.basePackageName = System.getProperty("project.package");
