@@ -17,7 +17,7 @@
     <description>lazyFastCode 代码生成器</description>
 
     <properties>
-        <start-class>lazy.fast.code.generator.Generator</start-class>
+        <start-class>lazy.fast.code.generator.QuickStart</start-class>
     </properties>
 
     <dependencies>
