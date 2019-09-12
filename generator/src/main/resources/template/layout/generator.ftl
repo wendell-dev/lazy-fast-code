@@ -22,7 +22,7 @@ public class GeneratorTest {
         // 【必填项】项目名称
         Config.projectName = "${projectName}";
         // 【必填项】项目根路径 - src目录的上层，如果不存在目录会自动创建
-        Config.projectRootPath = "${projectRootPath}";
+        Config.projectRootPath = "${projectRootPath?replace("\\", "\\\\")}";
         // 【必填项】要生成的根包名，如果不存在目录会自动创建
         Config.basePackageName = "${basePackageName}";
 
