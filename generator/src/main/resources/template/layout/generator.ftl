@@ -6,7 +6,7 @@ import lazy.fast.code.generator.Generator;
 /**
  * LazyFastCode代码生成器
  *
- * @author wendell
+ * @author ${author}
  * @date ${.now?string("yyyy-MM-dd HH:mm")}
  * @see <a href="https://github.com/wendell-dev/lazy-fast-code">LazyFastCode代码生成器</a>
  */
@@ -17,14 +17,14 @@ public class GeneratorTest {
         Config.moduleTemplateRootPath = null;
         Config.layoutTemplateRootPath = null;
         // 作者签名, 如果不填写则按System.getProperty("user.name")取值
-        Config.author = "wendell";
+        Config.author = "${author}";
 
         // 【必填项】项目名称
-        Config.projectName = "demo";
+        Config.projectName = "${projectName}";
         // 【必填项】项目根路径 - src目录的上层，如果不存在目录会自动创建
-        Config.projectRootPath = "D:\\workspace\\".concat(Config.projectName);
+        Config.projectRootPath = "${projectRootPath}";
         // 【必填项】要生成的根包名，如果不存在目录会自动创建
-        Config.basePackageName = "lazy.fast.code.demo";
+        Config.basePackageName = "${basePackageName}";
 
         // 生成项目骨架, 需要的时候可开启
         // Generator.generateLayout();
