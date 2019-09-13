@@ -2,10 +2,10 @@ spring:
   application:
     name: ${projectName}
   datasource:
-    url: ${jdbcUrl}
-    username: ${jdbcUser}
-    password: ${jdbcPassword}
-    driver-class-name: ${jdbcClassName}
+    url: ${jdbcUrl!"jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai"}
+    username: ${jdbcUser!"root"}
+    password: ${jdbcPassword!"123456"}
+    driver-class-name: ${jdbcClassName!"com.mysql.cj.jdbc.Driver"}
     hikari:
       minimum-idle: 5
       maximum-pool-size: 15

@@ -1,7 +1,5 @@
 package lazy.fast.code.generator;
 
-import lazy.fast.code.generator.util.JdbcUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +55,11 @@ public class Config {
      */
     public static String classDescription;
 
+    public static String jdbcClassName;
+    public static String jdbcUrl;
+    public static String jdbcUser;
+    public static String jdbcPassword;
+
     /**
      * 模板填充数据值
      */
@@ -74,10 +77,10 @@ public class Config {
         DATA.put("className", className);
         DATA.put("classDescription", classDescription);
 
-        DATA.put("jdbcClassName", JdbcUtils.className);
-        DATA.put("jdbcUrl", JdbcUtils.url);
-        DATA.put("jdbcUser", JdbcUtils.user);
-        DATA.put("jdbcPassword", JdbcUtils.password);
+        DATA.put("jdbcClassName", jdbcClassName);
+        DATA.put("jdbcUrl", jdbcUrl);
+        DATA.put("jdbcUser", jdbcUser);
+        DATA.put("jdbcPassword", jdbcPassword);
     }
 
 }

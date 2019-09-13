@@ -48,6 +48,11 @@ public class QuickStart {
         // 项目骨架模板文件根路径
         Config.layoutTemplateRootPath = System.getProperty("template.layout", null);
 
+        Config.jdbcClassName = System.getProperty("jdbc.class", null);
+        Config.jdbcUrl = System.getProperty("jdbc.url", null);
+        Config.jdbcUser = System.getProperty("jdbc.user", null);
+        Config.jdbcPassword = System.getProperty("jdbc.password", null);
+
         // 生成项目骨架
         Generator.generateLayout();
     }

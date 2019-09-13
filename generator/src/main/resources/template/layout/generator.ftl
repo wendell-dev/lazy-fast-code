@@ -16,6 +16,7 @@ public class GeneratorTest {
         // 模板文件根路径, 为空的时候就默认使用内置模板，如果有自定义模板就写模板绝对路径
         Config.moduleTemplateRootPath = null;
         Config.layoutTemplateRootPath = null;
+
         // 作者签名, 如果不填写则按System.getProperty("user.name")取值
         Config.author = "${author}";
 
@@ -37,6 +38,11 @@ public class GeneratorTest {
         Config.className = "User";
         // 【必填项】类描述
         Config.classDescription = "用户信息";
+
+        Config.jdbcClassName = "${jdbcClassName!'com.mysql.cj.jdbc.Driver'}";
+        Config.jdbcUrl = "${jdbcUrl!'jdbc:mysql://localhost:3306/demo'}";
+        Config.jdbcUser = "${jdbcUser!'root'}";
+        Config.jdbcPassword = "${jdbcPassword!'123456'}";
 
         // 生成所有模板类
         Generator.generateAll();
