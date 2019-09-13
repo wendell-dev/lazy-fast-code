@@ -27,6 +27,7 @@
             <groupId>lazy.fast.code</groupId>
             <artifactId>code-generator</artifactId>
             <#noparse><version>${project.version}</version></#noparse>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
