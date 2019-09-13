@@ -49,7 +49,11 @@ java -Dauthor=wendell -Dproject.name=xxx-demo -Dproject.path=D:\\workspace -Dpro
 ```
 
 - 生成模块类
-TODO
+```
+1. 导入新生成的项目到你的IDE后，从新项目的测试包中找到 GeneratorTest.java
+2. 打开 GeneratorTest.java，修改其中的配置参数，确认要生成的模块
+3. 直接运行GeneratorTest.main方法，生成你的业务模块
+```
 
 
 ## Demo示例RESTFul API服务
