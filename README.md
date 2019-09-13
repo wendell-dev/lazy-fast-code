@@ -16,10 +16,14 @@ mvn clean install
 
 # 执行生成项目骨架命令
 # 参数说明： 
-#     author 生成类注释@author，如：author=wendell
+#     author 【可选】生成类注释@author，如：author=wendell
 #     project.name 【必填项】项目名称，如：project.name=xxx-demo
 #     project.path 【必填项】项目根路径，如：project.path=D:\\workspace
 #     project.package 【必填项】包名，如：project.package=com.xxx.demo
+#     jdbc.class 【可选】jdbc driver-class-name
+#     jdbc.url 【可选】jdbc url
+#     jdbc.user 【可选】jdbc user
+#     jdbc.password 【可选】jdbc password
 java -Dauthor=wendell -Dproject.name=xxx-demo -Dproject.path=D:\\workspace -Dproject.package=com.xxx.demo -jar generator/target/code-generator-1.0-SNAPSHOT-exec.jar
 
 # 导入新生成的D:\\workspace\\xxx-demo项目到你的IDE中, 你可以尽情的进行业务开发了
