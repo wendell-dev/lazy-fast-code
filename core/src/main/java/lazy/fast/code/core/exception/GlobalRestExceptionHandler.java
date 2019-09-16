@@ -125,4 +125,10 @@ public class GlobalRestExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
     }
 
+    @ExceptionHandler(value = BaseUnCheckException.class)
+    public ResponseEntity<ResultMsg> baseUnCheckHandler(BaseUnCheckException e) {
+        // 其它继承BaseUnCheckException的自定义非受检异常的处理方式
+        return ResponseEntity.status(e.getResultMsg().getCode()).body(e.getResultMsg());
+    }
+
 }
