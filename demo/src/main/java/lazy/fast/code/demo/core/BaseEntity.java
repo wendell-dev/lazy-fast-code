@@ -1,7 +1,7 @@
 package lazy.fast.code.demo.core;
 
 import io.swagger.annotations.ApiModelProperty;
-import lazy.fast.code.core.orm.SnowFlakeGenId;
+import lazy.fast.code.core.orm.tk.SnowFlakeGenId;
 import lombok.Getter;
 import lombok.Setter;
 import tk.mybatis.mapper.annotation.KeySql;

@@ -1,4 +1,4 @@
-package lazy.fast.code.core.orm;
+package lazy.fast.code.core.orm.tk;
 
 import lazy.fast.code.core.exception.SystemException;
 import tk.mybatis.mapper.genid.GenId;
@@ -28,12 +28,12 @@ public class SnowFlakeGenId implements GenId<String> {
     private static final long TWEPOCH = 1361753741828L;
     private long sequence = 0L;
     private static final long WORKER_ID_BIS = 10L;
-    private static final long MAX_WORKER_ID = -1L ^ -1L << WORKER_ID_BIS;
+    private static final long MAX_WORKER_ID = ~(-1L << WORKER_ID_BIS);
     private static final long SEQUENCE_BITS = 12L;
 
     private static final long WORKER_ID_SHIFT = SEQUENCE_BITS;
     private static final long TIMESTAMP_LEF_SHIFT = SEQUENCE_BITS + WORKER_ID_BIS;
-    private static final long SEQUENCE_MASK = -1L ^ -1L << SEQUENCE_BITS;
+    private static final long SEQUENCE_MASK = ~(-1L << SEQUENCE_BITS);
 
     private long lastTimestamp = -1L;
 
