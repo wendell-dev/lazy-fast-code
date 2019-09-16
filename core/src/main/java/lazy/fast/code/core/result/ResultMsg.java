@@ -1,7 +1,9 @@
 package lazy.fast.code.core.result;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lazy.fast.code.core.exception.SystemException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -92,7 +94,11 @@ public class ResultMsg implements Serializable {
      */
     @Override
     public String toString() {
-        return JSON.toJSONString(this);
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new SystemException("ResultMsg to json string error");
+        }
     }
 
 }
