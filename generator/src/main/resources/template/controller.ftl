@@ -4,9 +4,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lazy.fast.code.core.exception.NoContentNotException;
+import lazy.fast.code.core.exception.NotFoundException;
 import lazy.fast.code.core.orm.BaseController;
 import lazy.fast.code.core.orm.BaseService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,14 +40,22 @@ public class ${className?cap_first}Controller extends BaseController<${className
     @ApiOperation(value = "获取${classDescription}列表")
     @GetMapping
     public List<${className?cap_first}> list(${className?cap_first} ${className?uncap_first}) {
-        return this.getBaseService().list(${className?uncap_first});
+        List<${className?cap_first}> list = this.getBaseService().list(${className?uncap_first});
+        if (CollectionUtils.isEmpty(list)) {
+            throw new NoContentNotException();
+        }
+        return list;
     }
 
     @ApiOperation(value = "根据数据主键获取${classDescription}")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "数据主键", required = true, paramType = "path")})
     @GetMapping("/{id}")
     public ${className?cap_first} get(@PathVariable String id) {
-        return this.getBaseService().get(id);
+        ${className?cap_first} ${className?uncap_first} = this.getBaseService().get(id);
+        if (${className?uncap_first} == null) {
+            throw new NotFoundException();
+        }
+        return ${className?uncap_first};
     }
 
     @ApiOperation(value = "保存${classDescription}")
