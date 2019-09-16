@@ -4,9 +4,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lazy.fast.code.core.exception.NoContentNotException;
+import lazy.fast.code.core.exception.NotFoundException;
 import lazy.fast.code.core.orm.BaseController;
 import lazy.fast.code.core.orm.BaseService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,14 +39,22 @@ public class AddressController extends BaseController<Address> {
     @ApiOperation(value = "获取地址信息列表")
     @GetMapping
     public List<Address> list() {
-        return this.getBaseService().list(null);
+        List<Address> list = this.getBaseService().list(null);
+        if (CollectionUtils.isEmpty(list)) {
+            throw new NoContentNotException();
+        }
+        return list;
     }
 
     @ApiOperation(value = "根据ID获取地址信息")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "地址ID", required = true, paramType = "path")})
     @GetMapping("/{id}")
     public Address get(@PathVariable String id) {
-        return this.getBaseService().get(id);
+        Address address = this.getBaseService().get(id);
+        if (address == null) {
+            throw new NotFoundException();
+        }
+        return address;
     }
 
     @ApiOperation(value = "保存地址信息")
