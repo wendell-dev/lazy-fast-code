@@ -1,4 +1,4 @@
-package lazy.fast.code.core.orm.tk;
+package lazy.fast.code.core.orm.genid;
 
 import lazy.fast.code.core.exception.SystemException;
 import tk.mybatis.mapper.genid.GenId;
