@@ -1,5 +1,6 @@
 package lazy.fast.code.demo.address;
 
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,6 +45,18 @@ public class AddressController extends BaseController<Address> {
             throw new NoContentNotException();
         }
         return list;
+    }
+
+    @ApiOperation(value = "获取地址信息分页列表")
+    @ApiImplicitParams({@ApiImplicitParam(name = "pageNum", value = "当前页码", required = true, paramType = "path"),
+        @ApiImplicitParam(name = "pageSize", value = "每页显示数量", required = true, paramType = "path")})
+    @GetMapping("/{pageNum}/{pageSize}")
+    public PageInfo<Address> listPage(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+        List<Address> list = this.getBaseService().listPage(null, pageNum, pageSize);
+        if (CollectionUtils.isEmpty(list)) {
+            throw new NoContentNotException();
+        }
+        return PageInfo.of(list);
     }
 
     @ApiOperation(value = "根据ID获取地址信息")

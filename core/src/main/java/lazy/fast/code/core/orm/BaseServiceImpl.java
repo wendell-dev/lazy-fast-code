@@ -1,7 +1,7 @@
 package lazy.fast.code.core.orm;
 
+import com.github.pagehelper.PageRowBounds;
 import lazy.fast.code.core.exception.SystemException;
-import org.apache.ibatis.session.RowBounds;
 import tk.mybatis.mapper.util.Assert;
 
 import java.io.Serializable;
@@ -72,13 +72,8 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
     }
 
     @Override
-    public List<T> listPage(T entity, int offset, int limit) {
-        return this.getBaseRepository().selectByRowBounds(entity, new RowBounds(offset, limit));
-    }
-
-    @Override
-    public int count(T entity) {
-        return this.getBaseRepository().selectCount(entity);
+    public List<T> listPage(T entity, int pageNum, int pageSize) {
+        return this.getBaseRepository().selectByRowBounds(entity, new PageRowBounds(pageNum - 1, pageSize));
     }
 
 }

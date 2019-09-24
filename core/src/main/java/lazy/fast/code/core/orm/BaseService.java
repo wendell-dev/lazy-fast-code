@@ -80,21 +80,12 @@ public interface BaseService<T extends BaseEntity> {
      * 
      * @param entity
      *            实体对象
-     * @param offset
-     *            offset
-     * @param limit
-     *            limit
+     * @param pageNum
+     *            当前页码
+     * @param pageSize
+     *            每页显示数量
      * @return 实体集合
      */
-    List<T> listPage(T entity, int offset, int limit);
-
-    /**
-     * 根据实体中的属性查询总数
-     *
-     * @param entity
-     *            实体对象
-     * @return 总数
-     */
-    int count(T entity);
+    List<T> listPage(T entity, int pageNum, int pageSize);
 
 }
