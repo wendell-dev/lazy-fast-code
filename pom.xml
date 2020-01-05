@@ -32,10 +32,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <code-core.version>1.0-SNAPSHOT</code-core.version>
+        <code-generator.version>1.0-SNAPSHOT</code-generator.version>
         <tk.mybatis.version>2.1.5</tk.mybatis.version>
         <pagehelper.version>1.2.10</pagehelper.version>
         <swagger.version>1.9.1.RELEASE</swagger.version>
-        <fastjson.version>1.2.58</fastjson.version>
     </properties>
 
     <modules>
@@ -47,6 +48,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>lazy.fast.code</groupId>
+                <artifactId>code-core</artifactId>
+                <version>${code-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>lazy.fast.code</groupId>
+                <artifactId>code-generator</artifactId>
+                <version>${code-generator.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
                 <version>${tk.mybatis.version}</version>
@@ -55,11 +67,6 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.spring4all</groupId>

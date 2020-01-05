@@ -20,7 +20,6 @@
         <dependency>
             <groupId>lazy.fast.code</groupId>
             <artifactId>code-core</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
