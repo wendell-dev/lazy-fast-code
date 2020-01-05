@@ -21,12 +21,10 @@
         <dependency>
             <groupId>lazy.fast.code</groupId>
             <artifactId>code-core</artifactId>
-            <#noparse><version>${project.version}</version></#noparse>
         </dependency>
         <dependency>
             <groupId>lazy.fast.code</groupId>
             <artifactId>code-generator</artifactId>
-            <#noparse><version>${project.version}</version></#noparse>
             <scope>test</scope>
         </dependency>
     </dependencies>
