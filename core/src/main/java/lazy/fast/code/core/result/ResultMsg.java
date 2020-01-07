@@ -39,6 +39,11 @@ public class ResultMsg implements Serializable {
      */
     private String detailMsg;
 
+    /**
+     * 允许反序列化
+     */
+    public ResultMsg() {}
+
     private ResultMsg(int code, String msg, String detailMsg) {
         this.code = code;
         this.msg = msg;
