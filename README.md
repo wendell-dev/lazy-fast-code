@@ -158,7 +158,7 @@ java -jar target/code-demo-1.0-SNAPSHOT.jar
 
 
 ## 集成的组件
-- [Spring Boot 2.1.7](https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/)
+- [Spring Boot 2.2.2](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/html/)
 - [MyBatis通用Mapper](https://github.com/abel533/Mapper) - tk.mybatis
 - [Mybatis通用分页插件](https://github.com/pagehelper/Mybatis-PageHelper) - PageHelper
 - [lombok](https://projectlombok.org/) - 简化使用
