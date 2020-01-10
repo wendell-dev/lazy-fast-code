@@ -1,8 +1,8 @@
 package lazy.fast.code.demo.user;
 
-import lazy.fast.code.core.exception.NoContentNotException;
-import lazy.fast.code.core.orm.BaseRepository;
-import lazy.fast.code.core.orm.BaseServiceImpl;
+import lazy.fast.code.core.web.exception.NoContentNotException;
+import lazy.fast.code.core.web.orm.BaseRepository;
+import lazy.fast.code.core.web.orm.BaseServiceImpl;
 import lazy.fast.code.demo.address.Address;
 import lazy.fast.code.demo.address.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;

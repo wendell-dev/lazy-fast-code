@@ -103,11 +103,11 @@ java -jar target/code-demo-1.0-SNAPSHOT.jar
     | - - - - - - - - - - - - - - - - - - - -- - - - - - - - - -- - - - - - - - - -- - - - - - - - - - - - - -
     +- lazy-fast-code
     | |
-    | +- core  - - - - LazyFastCode核心类集合，会打成Maven-jar包，供其它项目/模块依赖
+    | +- core-web  - - - - LazyFastCode核心类集合，会打成Maven-jar包，供其它项目/模块依赖
     | |      +- src/
     | |      |    +- main
     | |      |        +- java
-    | |      |            +- lazy.fast.code.core
+    | |      |            +- lazy.fast.code.core.web
     | |      +- pom.xml
     | |
     | |

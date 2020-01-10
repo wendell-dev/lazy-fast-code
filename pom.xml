@@ -33,15 +33,15 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
-        <code-core.version>1.0-SNAPSHOT</code-core.version>
-        <code-generator.version>1.0-SNAPSHOT</code-generator.version>
+        <lazy-fast-code-core-web.version>1.0-SNAPSHOT</lazy-fast-code-core-web.version>
+        <lazy-fast-code-generator.version>1.0-SNAPSHOT</lazy-fast-code-generator.version>
         <tk.mybatis.version>2.1.5</tk.mybatis.version>
         <pagehelper.version>1.2.10</pagehelper.version>
         <swagger.version>1.9.1.RELEASE</swagger.version>
     </properties>
 
     <modules>
-        <module>core</module>
+        <module>core-web</module>
         <module>generator</module>
         <module>demo</module>
     </modules>
@@ -57,13 +57,13 @@
             </dependency>
             <dependency>
                 <groupId>lazy.fast.code</groupId>
-                <artifactId>code-core</artifactId>
-                <version>${code-core.version}</version>
+                <artifactId>core-web</artifactId>
+                <version>${lazy-fast-code-core-web.version}</version>
             </dependency>
             <dependency>
                 <groupId>lazy.fast.code</groupId>
-                <artifactId>code-generator</artifactId>
-                <version>${code-generator.version}</version>
+                <artifactId>generator</artifactId>
+                <version>${lazy-fast-code-generator.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

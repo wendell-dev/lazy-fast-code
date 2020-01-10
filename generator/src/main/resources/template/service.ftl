@@ -1,6 +1,6 @@
 package ${basePackageName}.${moduleName};
 
-import lazy.fast.code.core.orm.BaseService;
+import lazy.fast.code.core.web.orm.BaseService;
 
 /**
  * ${classDescription}

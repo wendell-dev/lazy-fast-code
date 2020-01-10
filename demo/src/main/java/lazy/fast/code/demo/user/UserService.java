@@ -1,6 +1,6 @@
 package lazy.fast.code.demo.user;
 
-import lazy.fast.code.core.orm.BaseService;
+import lazy.fast.code.core.web.orm.BaseService;
 
 import java.util.List;
 

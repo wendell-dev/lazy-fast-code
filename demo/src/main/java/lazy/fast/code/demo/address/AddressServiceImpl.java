@@ -2,8 +2,8 @@ package lazy.fast.code.demo.address;
 
 import org.springframework.stereotype.Service;
 
-import lazy.fast.code.core.orm.BaseRepository;
-import lazy.fast.code.core.orm.BaseServiceImpl;
+import lazy.fast.code.core.web.orm.BaseRepository;
+import lazy.fast.code.core.web.orm.BaseServiceImpl;
 
 /**
  * 地址信息

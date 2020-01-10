@@ -1,5 +1,7 @@
 package lazy.fast.code.demo;
 
+import lazy.fast.code.core.web.exception.NoContentNotException;
+import lazy.fast.code.core.web.exception.NotFoundException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring4all.swagger.EnableSwagger2Doc;
 
-import lazy.fast.code.core.result.ResultMsg;
+import lazy.fast.code.core.web.result.ResultMsg;
 
 /**
  * 启动类
@@ -64,11 +66,44 @@ public class Application {
     }
 
     /**
-     * 无返回值
+     * 无返回值, 这是正确的请求，只是没有内容返回，http状态为204
      */
     @GetMapping("/no-content")
-    public ResponseEntity hello() {
+    public ResponseEntity<Void> noContent() {
         return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * 无返回值, 等同于：
+     *
+     * <pre>
+     * &#64;GetMapping("/no-content")
+     * public ResponseEntity noContent() {
+     *     return ResponseEntity.noContent().build();
+     * }
+     * </pre>
+     */
+    @GetMapping("/no-content1")
+    public void noContent1() {
+        throw new NoContentNotException();
+    }
+
+    /**
+     * http状态为404, 无返回内容
+     */
+    @GetMapping("/not-found")
+    public ResponseEntity<Void> notFound() {
+        return ResponseEntity.notFound().build();
+    }
+
+    /**
+     * http状态为404,
+     * 
+     * @return {"code":404,"msg":"资源不存在"}
+     */
+    @GetMapping("/not-found")
+    public ResponseEntity<ResultMsg> notFound1() {
+        throw new NotFoundException();
     }
 
 }

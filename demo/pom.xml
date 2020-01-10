@@ -10,16 +10,16 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>code-demo</artifactId>
+    <artifactId>demo</artifactId>
     <packaging>jar</packaging>
 
-    <name>code-demo</name>
+    <name>demo</name>
     <description>lazyFastCode 使用示例</description>
 
     <dependencies>
         <dependency>
             <groupId>lazy.fast.code</groupId>
-            <artifactId>code-core</artifactId>
+            <artifactId>core-web</artifactId>
         </dependency>
     </dependencies>
 

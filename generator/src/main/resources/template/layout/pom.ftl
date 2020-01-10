@@ -20,11 +20,11 @@
     <dependencies>
         <dependency>
             <groupId>lazy.fast.code</groupId>
-            <artifactId>code-core</artifactId>
+            <artifactId>core-web</artifactId>
         </dependency>
         <dependency>
             <groupId>lazy.fast.code</groupId>
-            <artifactId>code-generator</artifactId>
+            <artifactId>generator</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,6 +1,6 @@
 package lazy.fast.code.demo.user;
 
-import lazy.fast.code.core.orm.BaseRepository;
+import lazy.fast.code.core.web.orm.BaseRepository;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

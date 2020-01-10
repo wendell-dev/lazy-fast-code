@@ -2,7 +2,7 @@ package ${basePackageName}.${moduleName};
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lazy.fast.code.core.orm.BaseEntity;
+import lazy.fast.code.core.web.orm.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
