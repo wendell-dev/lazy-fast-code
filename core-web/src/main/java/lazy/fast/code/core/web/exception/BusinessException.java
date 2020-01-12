@@ -2,6 +2,7 @@ package lazy.fast.code.core.web.exception;
 
 import lazy.fast.code.core.web.result.MsgEnumable;
 import lazy.fast.code.core.web.result.ResultMsg;
+import org.springframework.http.HttpStatus;
 
 /**
  * 自定义业务异常类 - HTTP Status 400
@@ -10,11 +11,13 @@ import lazy.fast.code.core.web.result.ResultMsg;
  */
 public class BusinessException extends BaseUnCheckException {
 
+    private static final HttpStatus HTTP_STATUS = HttpStatus.BAD_REQUEST;
+
     /**
      * {"code":400,"msg":"操作失败"}
      */
     public BusinessException() {
-        super(ResultMsg.fail());
+        super(HTTP_STATUS, ResultMsg.fail());
     }
 
     /**
@@ -24,7 +27,7 @@ public class BusinessException extends BaseUnCheckException {
      *            异常简要信息
      */
     public BusinessException(String message) {
-        super(ResultMsg.fail(message));
+        super(HTTP_STATUS, ResultMsg.fail(message));
     }
 
     /**
@@ -36,7 +39,7 @@ public class BusinessException extends BaseUnCheckException {
      *            异常详细信息
      */
     public BusinessException(String message, String detailMsg) {
-        super(ResultMsg.fail(message, detailMsg));
+        super(HTTP_STATUS, ResultMsg.fail(message, detailMsg));
     }
 
     /**
@@ -48,7 +51,7 @@ public class BusinessException extends BaseUnCheckException {
      *            消息枚举
      */
     public BusinessException(MsgEnumable msgEnum) {
-        super(ResultMsg.of(msgEnum));
+        super(HTTP_STATUS, ResultMsg.of(msgEnum));
     }
 
 }

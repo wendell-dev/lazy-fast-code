@@ -15,56 +15,46 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
 /**
- * 全局异常处理器 - 只针对返回JSON数据交互格式(标记为@RestController类)
+ * 全局异常处理器 - 只针对返回JSON数据交互格式(标记为@RestController类) <br />
+ * 应用应该创建一个自定义全局异常处理器,并继承此类,让此类定义的ExceptionHandler生效，如：
+ * <pre>
+ * &#64;RestControllerAdvice
+ * public class GlobalRestExceptionHandler extends AbstractRestExceptionHandler {
+ * 
+ * }
+ * </pre>
  *
  * @author wendell
  */
 @Slf4j
-@RestControllerAdvice
-public class GlobalRestExceptionHandler {
+public abstract class AbstractRestExceptionHandler {
 
     @ExceptionHandler(value = NoContentNotException.class)
     public ResponseEntity<Void> notContentNotExceptionHandler() {
         return ResponseEntity.noContent().build();
     }
 
-    @ExceptionHandler(value = BusinessException.class)
-    public ResponseEntity<ResultMsg> businessExceptionHandler(BusinessException e) {
-        return ResponseEntity.badRequest().body(e.getResultMsg());
-    }
-
-    @ExceptionHandler(value = AuthException.class)
-    public ResponseEntity<ResultMsg> authExceptionHandler(AuthException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getResultMsg());
-    }
-
-    @ExceptionHandler(value = ForbiddenException.class)
-    public ResponseEntity<ResultMsg> forbiddenExceptionHandler(ForbiddenException e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getResultMsg());
-    }
-
-    @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<ResultMsg> notFoundExceptionHandler(NotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getResultMsg());
-    }
-
     @ExceptionHandler(value = SystemException.class)
     public ResponseEntity<ResultMsg> systemExceptionHandler(SystemException e) {
         log.error(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
+        return baseUnCheckHandler(e);
+    }
+
+    @ExceptionHandler(value = BaseUnCheckException.class)
+    public ResponseEntity<ResultMsg> baseUnCheckHandler(BaseUnCheckException e) {
+        return ResponseEntity.status(e.getHttpStatus()).body(e.getResultMsg());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<ResultMsg> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         List<ObjectError> allErrors = bindingResult.getAllErrors();
-        StringBuilder sb = new StringBuilder(10);
+        StringBuilder sb = new StringBuilder(32);
         allErrors.forEach(oe -> sb.append(oe.getDefaultMessage()).append(";"));
         String body = sb.toString();
         if (body.endsWith(";")) {
@@ -123,12 +113,6 @@ public class GlobalRestExceptionHandler {
     public ResponseEntity<ResultMsg> exceptionHandler(Exception e) {
         log.error(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultMsg.error());
-    }
-
-    @ExceptionHandler(value = BaseUnCheckException.class)
-    public ResponseEntity<ResultMsg> baseUnCheckHandler(BaseUnCheckException e) {
-        // 其它继承BaseUnCheckException的自定义非受检异常的处理方式
-        return ResponseEntity.status(e.getResultMsg().getCode()).body(e.getResultMsg());
     }
 
 }

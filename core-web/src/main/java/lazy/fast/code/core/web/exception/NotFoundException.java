@@ -1,5 +1,7 @@
 package lazy.fast.code.core.web.exception;
 
+import org.springframework.http.HttpStatus;
+
 import lazy.fast.code.core.web.result.MsgEnum;
 import lazy.fast.code.core.web.result.MsgEnumable;
 import lazy.fast.code.core.web.result.ResultMsg;
@@ -11,11 +13,13 @@ import lazy.fast.code.core.web.result.ResultMsg;
  */
 public class NotFoundException extends BaseUnCheckException {
 
+    private static final HttpStatus HTTP_STATUS = HttpStatus.NOT_FOUND;
+
     /**
      * {"code":404,"msg":"资源不存在"}
      */
     public NotFoundException() {
-        super(ResultMsg.of(MsgEnum.NOT_FOUND));
+        super(HTTP_STATUS, ResultMsg.of(MsgEnum.NOT_FOUND));
     }
 
     /**
@@ -25,7 +29,7 @@ public class NotFoundException extends BaseUnCheckException {
      *            异常简要信息
      */
     public NotFoundException(String message) {
-        super(ResultMsg.of(MsgEnum.NOT_FOUND.code(), message));
+        super(HTTP_STATUS, ResultMsg.of(MsgEnum.NOT_FOUND.code(), message));
     }
 
     /**
@@ -37,7 +41,7 @@ public class NotFoundException extends BaseUnCheckException {
      *            消息枚举
      */
     public NotFoundException(MsgEnumable msgEnum) {
-        super(ResultMsg.of(msgEnum));
+        super(HTTP_STATUS, ResultMsg.of(msgEnum));
     }
 
 }

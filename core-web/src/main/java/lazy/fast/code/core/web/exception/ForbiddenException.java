@@ -1,5 +1,7 @@
 package lazy.fast.code.core.web.exception;
 
+import org.springframework.http.HttpStatus;
+
 import lazy.fast.code.core.web.result.MsgEnum;
 import lazy.fast.code.core.web.result.MsgEnumable;
 import lazy.fast.code.core.web.result.ResultMsg;
@@ -11,11 +13,13 @@ import lazy.fast.code.core.web.result.ResultMsg;
  */
 public class ForbiddenException extends BaseUnCheckException {
 
+    private static final HttpStatus HTTP_STATUS = HttpStatus.FORBIDDEN;
+
     /**
      * {"code":403,"msg":"无访问权限"}
      */
     public ForbiddenException() {
-        super(ResultMsg.of(MsgEnum.FORBIDDEN));
+        super(HTTP_STATUS, ResultMsg.of(MsgEnum.FORBIDDEN));
     }
 
     /**
@@ -25,7 +29,7 @@ public class ForbiddenException extends BaseUnCheckException {
      *            异常简要信息
      */
     public ForbiddenException(String message) {
-        super(ResultMsg.of(MsgEnum.FORBIDDEN.code(), message));
+        super(HTTP_STATUS, ResultMsg.of(MsgEnum.FORBIDDEN.code(), message));
     }
 
     /**
@@ -37,7 +41,7 @@ public class ForbiddenException extends BaseUnCheckException {
      *            消息枚举
      */
     public ForbiddenException(MsgEnumable msgEnum) {
-        super(ResultMsg.of(msgEnum));
+        super(HTTP_STATUS, ResultMsg.of(msgEnum));
     }
 
 }

@@ -1,5 +1,7 @@
 package lazy.fast.code.core.web.exception;
 
+import org.springframework.http.HttpStatus;
+
 import lazy.fast.code.core.web.result.MsgEnum;
 import lazy.fast.code.core.web.result.MsgEnumable;
 import lazy.fast.code.core.web.result.ResultMsg;
@@ -11,11 +13,13 @@ import lazy.fast.code.core.web.result.ResultMsg;
  */
 public class AuthException extends BaseUnCheckException {
 
+    private static final HttpStatus HTTP_STATUS = HttpStatus.UNAUTHORIZED;
+
     /**
      * {"code":401,"msg":"未经过身份认证"}
      */
     public AuthException() {
-        super(ResultMsg.of(MsgEnum.AUTH_ERROR));
+        super(HTTP_STATUS, ResultMsg.of(MsgEnum.AUTH_ERROR));
     }
 
     /**
@@ -25,7 +29,7 @@ public class AuthException extends BaseUnCheckException {
      *            异常简要信息
      */
     public AuthException(String message) {
-        super(ResultMsg.of(MsgEnum.AUTH_ERROR.code(), message));
+        super(HTTP_STATUS, ResultMsg.of(MsgEnum.AUTH_ERROR.code(), message));
     }
 
     /**
@@ -37,7 +41,7 @@ public class AuthException extends BaseUnCheckException {
      *            消息枚举
      */
     public AuthException(MsgEnumable msgEnum) {
-        super(ResultMsg.of(msgEnum));
+        super(HTTP_STATUS, ResultMsg.of(msgEnum));
     }
 
 }

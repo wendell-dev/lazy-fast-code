@@ -101,7 +101,7 @@ public class Application {
      * 
      * @return {"code":404,"msg":"资源不存在"}
      */
-    @GetMapping("/not-found")
+    @GetMapping("/not-found1")
     public ResponseEntity<ResultMsg> notFound1() {
         throw new NotFoundException();
     }

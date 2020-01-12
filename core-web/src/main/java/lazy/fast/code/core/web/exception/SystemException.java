@@ -1,5 +1,7 @@
 package lazy.fast.code.core.web.exception;
 
+import org.springframework.http.HttpStatus;
+
 import lazy.fast.code.core.web.result.MsgEnumable;
 import lazy.fast.code.core.web.result.ResultMsg;
 
@@ -10,11 +12,13 @@ import lazy.fast.code.core.web.result.ResultMsg;
  */
 public class SystemException extends BaseUnCheckException {
 
+    private static final HttpStatus HTTP_STATUS = HttpStatus.INTERNAL_SERVER_ERROR;
+
     /**
      * {"code":500,"msg":"服务器异常,请稍后再试"}
      */
     public SystemException() {
-        super(ResultMsg.error());
+        super(HTTP_STATUS, ResultMsg.error());
     }
 
     /**
@@ -24,7 +28,7 @@ public class SystemException extends BaseUnCheckException {
      *            异常简要信息
      */
     public SystemException(String message) {
-        super(ResultMsg.error(message));
+        super(HTTP_STATUS, ResultMsg.error(message));
     }
 
     /**
@@ -36,7 +40,7 @@ public class SystemException extends BaseUnCheckException {
      *            异常详细信息
      */
     public SystemException(String message, String detailMsg) {
-        super(ResultMsg.error(message, detailMsg));
+        super(HTTP_STATUS, ResultMsg.error(message, detailMsg));
     }
 
     /**
@@ -48,7 +52,7 @@ public class SystemException extends BaseUnCheckException {
      *            消息枚举
      */
     public SystemException(MsgEnumable msgEnum) {
-        super(ResultMsg.of(msgEnum));
+        super(HTTP_STATUS, ResultMsg.of(msgEnum));
     }
 
 }
