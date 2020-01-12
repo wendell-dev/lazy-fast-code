@@ -2,7 +2,6 @@ package lazy.fast.code.core.web.exception;
 
 import lazy.fast.code.core.web.result.ResultMsg;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
  * @author wendell
  */
 @Getter
-@Setter
 public abstract class BaseUnCheckException extends RuntimeException {
 
     /**
