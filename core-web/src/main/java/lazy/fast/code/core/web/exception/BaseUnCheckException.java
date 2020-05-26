@@ -15,9 +15,9 @@ public abstract class BaseUnCheckException extends RuntimeException {
     /**
      * http状态码, ResultMsg中的code可以与此相同
      */
-    private HttpStatus httpStatus;
+    private final HttpStatus httpStatus;
 
-    private ResultMsg resultMsg;
+    private final ResultMsg resultMsg;
 
     public BaseUnCheckException(HttpStatus httpStatus, ResultMsg resultMsg) {
         super(resultMsg.toString());

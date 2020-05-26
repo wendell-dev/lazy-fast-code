@@ -18,7 +18,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Setter
 @Getter
-public abstract class BaseEntity extends lazy.fast.code.core.web.orm.BaseEntity {
+public abstract class BaseEntity extends lazy.fast.code.core.web.orm.BaseEntity<String> {
 
     /**
      * 数据主键 - 自定义生成策略

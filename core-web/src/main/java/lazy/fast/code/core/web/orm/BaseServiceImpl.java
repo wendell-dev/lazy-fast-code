@@ -16,7 +16,7 @@ import java.util.List;
  */
 public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
-    private BaseRepository<T> baseRepository;
+    private final BaseRepository<T> baseRepository;
 
     public BaseServiceImpl(BaseRepository<T> baseRepository) {
         if (null == baseRepository) {
