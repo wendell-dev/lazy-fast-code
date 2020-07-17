@@ -3,7 +3,6 @@ package lazy.fast.code.core.web.exception;
 import lazy.fast.code.core.web.result.MsgEnum;
 import lazy.fast.code.core.web.result.ResultMsg;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -16,12 +15,14 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.util.List;
 
 /**
  * 全局异常处理器 - 只针对返回JSON数据交互格式(标记为@RestController类) <br />
  * 应用应该创建一个自定义全局异常处理器,并继承此类,让此类定义的ExceptionHandler生效，如：
+ * 
  * <pre>
  * &#64;RestControllerAdvice
  * public class GlobalRestExceptionHandler extends AbstractRestExceptionHandler {
@@ -86,10 +87,11 @@ public abstract class AbstractRestExceptionHandler {
         return ResponseEntity.badRequest().body(ResultMsg.fail(e.getParameterName() + "参数缺失"));
     }
 
-    @ExceptionHandler(value = TypeMismatchException.class)
-    public ResponseEntity<ResultMsg> typeMismatchExceptionHandler(TypeMismatchException e) {
+    @ExceptionHandler(value = MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ResultMsg> typeMismatchExceptionHandler(MethodArgumentTypeMismatchException e) {
+        assert e.getRequiredType() != null;
         return ResponseEntity.badRequest()
-            .body(ResultMsg.fail("参数类型不匹配,参数" + e.getPropertyName() + "类型应该为" + e.getRequiredType()));
+            .body(ResultMsg.fail("参数类型不匹配,参数" + e.getName() + "类型应该为" + e.getRequiredType().getSimpleName()));
     }
 
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
